@@ -1,0 +1,51 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>主题管理</title>
+<script type="text/javascript" src="js/jquery.js"></script>
+<script language="javascript" src="js/Common.js" type="text/javascript"></script>
+<link href="css/admincss.css" rel="stylesheet"type="text/css" />
+</head>
+
+<body>
+
+<div class="nav_bg1"><b>主题管理</b></div>
+<div class="tbbody">
+<form id="form1" name="form1" method="post" action="area_news.php?act={$tab}">
+  <table width="100%" border="0" cellspacing="0" cellpadding="0" class="table">
+    <tr class="nav_tit">
+      <th style="width:30px;"><input id="chkAll" type="checkbox" onclick="checkAll('gcheck')" /></th>
+      <th>标题</th>
+      <th>版块</th>
+      <th>作者</th>
+      <th>回复</th>
+      <th>浏览</th>
+      <th>最后发表</th>
+    </tr>
+    {section name=loop loop=$list}
+    
+    <tr onmouseover="c=this.style.backgroundColor;this.style.backgroundColor='#f4f4f4';" onmouseout="this.style.backgroundColor=c;">
+      <td align="center"><input type="checkbox" name="check_id[]" id="gcheck" value='{$list[loop].aid}'></td>
+      <td>{$list[loop].subject}</td>
+      <td>{$list[loop].fid}</td>
+      <td>{$list[loop].author}</td>
+      <td>{$list[loop].replies}</td>
+      <td>{$list[loop].views}</td>
+      <td>{$list[loop].lastpost}</td>
+
+    </tr>
+    {/section}
+    <tr>
+      <td>
+      <input type="submit" value="删除" name="Button1" onclick="return del_check(this.form,'area_news.php')" />
+      </td>
+      <td colspan="10" class="subpage"> {$paging}</td>
+    </tr>
+  </table>
+
+</form>
+</div>
+
+</body>
+</html>

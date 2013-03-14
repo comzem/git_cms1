@@ -1,0 +1,151 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>seo</title>
+<link href="css/admincss.css" rel="stylesheet"type="text/css" />
+<link href="css/common.css" rel="stylesheet"type="text/css" />
+<script type="text/javascript" src="js/jquery.js"></script>
+<script type="text/javascript" src="js/Common.js"></script>
+</head>
+
+<body>
+<div class="mbody">
+<div class="pagetit">
+  <div class="ptit">系统设置</div>
+  <div class="topnav">
+    <a href="?action=sysconfig&operation=view&type=seo" class="select"><u>SEO设置</u></a>
+    <a href="?action=sysconfig&operation=view&type=display"><u>显示设置</u></a>
+    <a href="?action=sysconfig&operation=view&type=system"><u>系统设置</u></a>
+  <div class="clear"></div>
+  </div>
+  <div class="clear"></div>
+</div>
+
+<form name="form1" method="post" action="admin.php?action=sysconfig&operation=save&type=seo">
+  
+  <div class="nav_bg">主站</div>
+  <table border="0" cellspacing="1" cellpadding="3" class="stripe_tb">
+    <tr>
+      <td align="right" class="tdleft">title</td>
+      <td><input type="text" name="s0" id="s0" class="w500" value="{$s0}"></td>
+    </tr>
+    <tr>
+      <td align="right" class="tdleft">keywords</td>
+      <td><input type="text" name="s1" id="s1" value="{$s1}" class="w500"></td>
+    </tr>
+    <tr>
+      <td align="right" class="tdleft">description</td>
+      <td><input type="text" name="s2" id="s2" class="w500" value="{$s2}"></td>
+    </tr>
+  </table>
+  <div class="nav_bg">资讯</div>
+  <table border="0" cellspacing="1" cellpadding="3" class="stripe_tb">
+    <tr>
+      <td align="right" class="tdleft">title</td>
+      <td><input type="text" name="s3" id="s3" class="w500" value="{$s3}"></td>
+    </tr>
+    <tr>
+      <td align="right" class="tdleft">keywords</td>
+      <td><input type="text" name="s4" id="s4" class="w500" value="{$s4}"></td>
+    </tr>
+    <tr>
+      <td align="right" class="tdleft">description</td>
+      <td><input type="text" name="s5" id="s5" class="w500" value="{$s5}"></td>
+    </tr>
+  </table>
+  <div class="nav_bg" style="display:none">下载</div>
+  <table border="0" cellspacing="1" cellpadding="3" class="stripe_tb" style="display:none">
+    <tr>
+      <td class="tdleft">title</td>
+      <td><input type="text" name="s6" id="s6" class="input" value="{$s6}"></td>
+    </tr>
+    <tr>
+      <td class="tdleft">keywords</td>
+      <td><input type="text" name="s7" id="s7" class="w500" value="{$s7}"></td>
+    </tr>
+    <tr>
+      <td class="tdleft">description</td>
+      <td><input type="text" name="s8" id="s8" class="w500" value="{$s8}"></td>
+    </tr>
+  </table>
+  <div class="nav_bg">留言</div>
+  <table border="0" cellspacing="1" cellpadding="3" class="stripe_tb">
+    <tr>
+      <td align="right" class="tdleft">title</td>
+      <td><input type="text" name="s9" id="s9" class="w500" value="{$s9}"></td>
+    </tr>
+    <tr>
+      <td align="right" class="tdleft">keywords</td>
+      <td><input type="text" name="s10" id="s10" class="w500" value="{$s10}"></td>
+    </tr>
+    <tr>
+      <td align="right" class="tdleft">description</td>
+      <td><input type="text" name="s11" id="s11" class="w500" value="{$s11}"></td>
+    </tr>
+  </table>
+  <div class="nav_bg" style="display:none">人才</div>
+  <table border="0" cellspacing="1" cellpadding="3" class="stripe_tb" style="display:none">
+    <tr>
+      <td class="tdleft">title</td>
+      <td><input type="text" name="s12" id="s12" class="input" value="{$s12}"></td>
+    </tr>
+    <tr>
+      <td class="tdleft">keywords</td>
+      <td><input type="text" name="s13" id="s13" class="w500" value="{$s13}"></td>
+    </tr>
+    <tr>
+      <td class="tdleft">description</td>
+      <td><input type="text" name="s14" id="s14" class="w500" value="{$s14}"></td>
+    </tr>
+  </table>
+  <div class="nav_bg" style="display:none">加盟</div>
+  <table border="0" cellspacing="1" cellpadding="3" class="stripe_tb" style="display:none">
+    <tr>
+      <td class="tdleft">title</td>
+      <td><input type="text" name="s15" id="s15" class="input" value="{$s15}"></td>
+    </tr>
+    <tr>
+      <td class="tdleft">keywords</td>
+      <td><input type="text" name="s16" id="s16" class="w500" value="{$s16}"></td>
+    </tr>
+    <tr>
+      <td class="tdleft">description</td>
+      <td><input type="text" name="s17" id="s17" class="w500" value="{$s17}"></td>
+    </tr>
+  </table>
+  <div class="nav_bg">电子商务</div>
+  <table border="0" cellspacing="1" cellpadding="3" class="stripe_tb">
+    <tr>
+      <td align="right" class="tdleft">title</td>
+      <td><input type="text" name="s18" id="s18" class="w500" value="{$s18}"></td>
+    </tr>
+    <tr>
+      <td align="right" class="tdleft">keywords</td>
+      <td><input type="text" name="s19" id="s19" class="w500" value="{$s19}"></td>
+    </tr>
+    <tr>
+      <td align="right" class="tdleft">description</td>
+      <td><input type="text" name="s20" id="s20" class="w500" value="{$s20}"></td>
+    </tr>
+</table>
+  <div class="nav_bg" style="display:none">团购</div>
+  <table border="0" cellspacing="1" cellpadding="3" class="stripe_tb" style="display:none">
+    <tr>
+      <td class="tdleft">title</td>
+      <td><input type="text" name="s21" id="s21" class="input" value="{$s21}"></td>
+    </tr>
+    <tr>
+      <td class="tdleft">keywords</td>
+      <td><input type="text" name="s22" id="s22" class="w500" value="{$s22}"></td>
+    </tr>
+    <tr>
+      <td class="tdleft">description</td>
+      <td><input type="text" name="s23" id="s23" class="w500" value="{$s23}"></td>
+    </tr>
+</table>
+  <input id="Submit1" type="submit" value="保存" />
+</form>
+</div>
+</body>
+</html>

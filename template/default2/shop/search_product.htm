@@ -1,0 +1,57 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>{$seotitle}-{$webname}</title>
+<meta name="keywords" content="{$keywords}" />
+<meta name="description" content="{$description}" />
+<link rel=stylesheet type=text/css href="{$tpl}/css/all.css">
+<link type="text/css" rel="stylesheet" href="{$tpl}/css/style.css" />
+<script type=text/javascript src="js/jquery.js"></script>
+</head>
+
+<body>
+{include file="{$path}header.htm"}
+<DIV class=content>
+  <DIV style="BACKGROUND: #fff" class=width960>
+    <DIV class=now>您现在的位置：：<a href='{$domain}'>首页</a> > <a href='#'>商品列表</a></DIV>
+    {include file="{$path}right.htm"}
+    <DIV style="MARGIN-TOP: 0px" class="fr xiangqing">
+      <DIV class=caidan>
+        <UL>
+          <LI class=sel><A href="#">所有商品</A></LI>
+<!--          <LI><A href="#">销 量</A></LI>
+          <LI><A href="#">价 格</A></LI>
+          <LI><A href="#">好 评</A></LI>
+          <LI><A href="#">上架时间</A></LI>-->
+        </UL>
+      </DIV>
+      <div class="prolist"> {section name=loop loop=$list}
+        <div class="prolist_1 prolist_border">
+          <p class="prolist_img prolist_img1"><a href="item.php?id={$list[loop].pid}" title="{$list[loop].title}" target="_blank"><img src="/upload/{$list[loop].photo}" title="{$list[loop].title}" style="display:block" /></a></p>
+          <p class="prolist_name"><a href="item.php?id={$list[loop].pid}" title="{$list[loop].title}" target="_blank"> {$list[loop].title}</a></p>
+          {if $jgdisplay=='1'}
+          <p><span class="num cred strong">¥</span><span class="num1 strong cred">{$list[loop].price1}</span> <s class="num c888">¥ {$list[loop].price1*1.5}</s></p>
+          {/if} </div>
+        {sectionelse}	没有数据...
+        {/section} </div>
+      <DIV class=clear></DIV>
+      <DIV class="fenye mat15"> {$paging}
+        <div class="clear"></div>
+        {literal}
+        <style type="text/css"> 
+.fenye span{float:left; margin-right:8px;}
+.fenye a{border:1px #C2D5E3 solid; padding:0 8px; margin-right:8px; color:#0066CC; background:#fff; float:left;  height:24px;}
+.fenye a:hover{background:#fff5f5; border:1px #76a5c8 solid;}
+.fenye .sel{background:#E5EDF2; color:#333; font-weight:bold; border:1px #C2D5E3 solid;  padding:0 8px;}
+</style>
+        {/literal} </DIV>
+    </DIV>
+    <DIV class=clear></DIV>
+  </DIV>
+</DIV>
+﻿
+<DIV class=clear></DIV>
+{include file="{$path}footer.htm"}
+</body>
+</html>

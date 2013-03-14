@@ -1,0 +1,216 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>{$seotitle}-{$webname}</title>
+<meta name="keywords" content="{$keywords}" />
+<meta name="description" content="{$description}" />
+<link type="text/css" rel="stylesheet" href="{$tpl}/css/style.css" />
+<script type="text/javascript" src="/js/jquery.js"></script>
+</head>
+
+<body>
+{include file="{$path}header.htm"}
+<div class="content">
+  <div class="width980">
+    <div class="jdt fl"> {literal} 
+      <script type="text/javascript" src="/js/jquery.slide.js"></script> 
+      <script type="text/javascript">
+			$(function(){
+				$("#jdtslide").KinSlideshow({
+					moveStyle:"left",
+					intervalTime:3,
+					mouseEvent:"mouseover",
+					titleBar:{"titleBar_bgColor":""},
+					titleFont:{TitleFont_size:14,TitleFont_color:"#ffffff"}
+				});
+			})
+			</script> 
+      {/literal}
+      <div id="jdtslide" style="visibility:hidden;"> 
+      {section name=loop loop=$tu}
+      	<a href="{$tu[loop].url}" title="{$tu[loop].title}" target="_blank"><img src="{$tu[loop].attach}" alt="" width="980" height="398" /></a>
+        {/section}
+      </div>
+    </div>
+    <div class="fr action_list">
+      <div class="action_tt">
+        <h3>网站公告</h3>
+      </div>
+      <ul>
+        {section name=loop loop=$news}
+        <li><a href="article/details.php?id={$news[loop].aid}" title="{$news[loop].title}" target="_blank">{$news[loop].title}</a></li>
+        {sectionelse}
+        没有数据...
+        {/section}
+      </ul>
+    </div>
+    <div class="clear"></div>
+    
+    <!---------栏目--------->
+    <div class="jdt fl" style="margin-top:8px;">
+    <div style="padding:5px;">
+        {section name=sec1 loop=$nav}
+        
+          <div class="zhulei1 fl"><a href="/shop/search_product.php?id={$nav[sec1].fid},0" class="sel">{$nav[sec1].title}</a></div>
+          
+          <div class="zilei1 fl"> 
+          {section name=sec2 loop=$nav[sec1].sub}
+          <a href="/shop/search_product.php?id={$nav[sec1].fid},{$nav[sec1].sub[sec2].fid}" >{$nav[sec1].sub[sec2].title}</a>
+          {/section}
+            <div class="clear"></div>
+          </div><div class="clear"></div>
+         {/section}
+          
+          </div>
+    </div>
+    <div class="fr action_list" style="margin-top:8px;">
+      <div class="action_tt">
+        <h3>发货通知</h3>
+      </div>
+      <ul>
+        {section name=loop loop=$tz}
+        <li><a href="article/details.php?id={$tz[loop].aid}" title="{$tz[loop].title}" target="_blank">{$tz[loop].title}</a></li>
+        {sectionelse}
+        没有数据...
+        {/section}
+      </ul>
+    </div>
+    <div class="clear"></div>
+
+    <!---------栏目--------->
+  </div>
+  <div class="index_main">
+    <div class="pro_tuijian">
+      <div class="index_fenlei_tt" style="border:0;">
+        <h3><span class="cred1">商品推荐</span></h3>
+      </div>
+      <div class="tuijian_list"> {section name=loop loop=$list}
+        <div class="prolist_1" >
+          <p class="prolist_img"><a href="shop/item.php?id={$list[loop].pid}" title="{$list[loop].title}" target="_blank"><img src="{$list[loop].photo}" title="{$list[loop].title}" /></a></p>
+          <p class="prolist_name"><a href="shop/item.php?id={$list[loop].pid}" title="{$list[loop].title}" target="_blank">{$list[loop].title}</a></p>
+          {if $jgdisplay=='1'}
+          <p><span class="num cred strong">¥</span><span class="num1 cred strong">{$list[loop].price1}</span> <s class="num c888">¥ {$list[loop].price1*1.5}</s></p>
+          {/if}
+        </div>
+        {sectionelse}	没有数据...
+        {/section}
+        <div class="clear"></div>
+      </div>
+    </div>
+    <!--分类1 Start-->
+    
+    {section name=sec1 loop=$plist}
+    <div class="index_fenlei mat10">
+      <div class="index_fenlei_tt">
+        <h3 class="fl">{$plist[sec1].title}</h3>
+        <span class="fr"><a href="shop/search_product.php?id={$plist[sec1].fid},0" title="{$plist[sec1].title}" target="_blank">更多>></a></span> </div>
+      <div class="index_prolist">
+      
+        <div class="fl prolist_left">
+        {section name=loop loop=$plist[sec1].sub1}
+          <div class="prolist_1">
+            <p class="prolist_img"><a href="shop/item.php?id={$plist[sec1].sub1[loop].pid}" title="{$plist[sec1].sub1[loop].title}" target="_blank"><img src="{$plist[sec1].sub1[loop].photo}" title="{$plist[sec1].sub1[loop].title}" /></a></p>
+            <p class="prolist_name"><a href="shop/item.php?id={$plist[sec1].sub1[loop].pid}" title="{$plist[sec1].sub1[loop].title}" target="_blank">{$plist[sec1].sub1[loop].title}</a></p>
+            {if $jgdisplay=='1'}
+            <p><span class="cred num strong">¥</span><span class="num1 cred strong">{$plist[sec1].sub1[loop].price1}</span> <s class="num c888">¥ {$plist[sec1].sub1[loop].price1*1.5}</s></p>
+            {/if}
+          </div>
+          {/section}
+        </div>
+        <div class="fr prolist_right">
+          <div class="prolist_right_tt">
+            <h3>{$plist[sec1].title}热销排行</h3>
+          </div>
+          <ul class="hotlist index_hot" style="height:386px;">
+          {section name=loop loop=$plist[sec1].sub2}
+            <li> <span class="fl hotimg"> <a href="shop/item.php?id={$plist[sec1].sub2[loop].pid}" title="{$plist[sec1].sub2[loop].title}" target="_blank"><img src="{$plist[sec1].sub2[loop].photo}" title="{$plist[sec1].sub2[loop].title}" /></a> </span> <span class="fl hotname hotname_index"> <a href="shop/item.php?id={$plist[sec1].sub2[loop].pid}" title="{$plist[sec1].sub2[loop].title}" target="_blank">{$plist[sec1].sub2[loop].title}</a> <span class="lh20">
+            {if $jgdisplay=='1'}商城价：<span class="cred num strong">¥</span><span class="num1 cred strong">{$plist[sec1].sub2[loop].price1}</span>{/if}
+            </span> </span>
+              <div class="clear"></div>
+            </li>
+{/section}
+          </ul>
+        </div>
+        <div class="clear"></div>
+      </div>
+    </div>
+    {/section}
+    
+    <!--分类1 End--> 
+  </div>
+</div>
+<div class="clear"></div>
+	<div class="flink">
+		<span class="strong">友情链接：</span>
+		{section name=loop loop=$links}
+			<a href="{$links[loop].url}" target="_blank">{$links[loop].sitename}</a>
+        {/section}
+			</div>
+	<div class="subnav">
+    <div class="foot">
+    	
+        <div class="bottom_link">
+		<div class="border_link">
+			<div class="item_1 fl">
+				<h3>用户指南</h3>
+				<ul class="mat5">
+                	{section name=loop loop=$help_1}
+						<li><a href="/article/page.php?id={$help_1[loop].id}" title="{$help_1[loop].title}">{$help_1[loop].title}</a></li>
+                    {/section}
+				</ul>
+			</div>
+			<div class="bottom_libg fl"></div>
+			<div class="item_1 fl">
+				<h3>配送方式</h3>
+				<ul class="mat5">
+					{section name=loop loop=$help_2}
+						<li><a href="/article/page.php?id={$help_2[loop].id}" title="{$help_2[loop].title}">{$help_2[loop].title}</a></li>
+                    {/section}
+				</ul>
+			</div>
+			<div class="bottom_libg fl"></div>
+			<div class="item_1 fl">
+				<h3>售后服务</h3>
+				<ul class="mat5">
+					{section name=loop loop=$help_3}
+						<li><a href="/article/page.php?id={$help_3[loop].id}" title="{$help_3[loop].title}">{$help_3[loop].title}</a></li>
+                    {/section}
+				</ul>
+			</div>
+			<div class="bottom_libg fl"></div>
+			<div class="item_1 fl">
+				<h3>关于我们</h3>
+				<ul class="mat5">
+					{section name=loop loop=$help_4}
+						<li><a href="/article/page.php?id={$help_4[loop].id}" title="{$help_4[loop].title}">{$help_4[loop].title}</a></li>
+                    {/section}
+				</ul>
+			</div>
+			<div class="bottom_libg fl"></div>
+			<div class="foot_tel fl">
+				<h3 class="c666">{$webname}</h3>
+				<p class="mat10">
+					{$online1}
+									</p>
+				<p class="tel_num">{$tel}</p>
+			</div>
+			<div class="clear"></div>
+		</div>
+	</div>
+    <div class="footnav">
+        	{section name=loop loop=$endnav}
+				<a href="{$endnav[loop].urls}" title="{$endnav[loop].title}" target="{$endnav[loop].target}">{$endnav[loop].title}</a>
+            {/section}
+        </div>
+		{$footmsg}
+        </div>
+	</div>
+
+<script>
+suspendcode="<div id=\"full\" style='right:20px; top:180px; position:absolute;z-index:1000;text-align:center;'><table width='99' border='0' cellpadding='0' cellspacing='0'><tr><td align='center'><a id='toTop' href='#top'><img border='0' src='/images/icon_top.gif' /></a></td></tr>{$online}<tr><td align='center'><a href='#bottom'><img border='0' src='/images/icon_bottom.gif' /></a></td></tr></table></div>"
+</script>
+
+    <script type="text/javascript" src="/js/Online.js"></script>
+</body>
+</html>

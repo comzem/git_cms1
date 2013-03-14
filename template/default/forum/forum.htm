@@ -1,0 +1,31 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>{$webname}</title>
+<link type="text/css" rel="stylesheet" href="{$tpl}/css/style.css" />
+<link type="text/css" rel="stylesheet" href="{$tpl}/css/forum.css" />
+<script type="text/javascript" src="{$domain}/js/jquery.js"></script>
+</head>
+
+<body>
+{include file="{$path}forum/header.htm"}
+
+{section name=sec1 loop=$nav}
+<div class="bor">
+ <div class="subject">{$nav[sec1].title}</div>
+ <table cellspacing="0" cellpadding="0" class="fl_tb">
+{section name=sec2 loop=$nav[sec1].sub}
+ <tr><td>
+ <a href="forum.php?mod=forumdisplay&fid={$nav[sec1].sub[sec2].fid}">
+ {$nav[sec1].sub[sec2].title}
+ </a>
+ </td></tr>
+{/section}
+</table>
+</div>
+{/section}
+
+{include file="{$path}my/myfooter.htm"}
+</body>
+</html>

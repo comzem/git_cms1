@@ -1,0 +1,70 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>会员中心</title>
+<link type="text/css" rel="stylesheet" href="{$tpl}/css/style.css" />
+<link type="text/css" rel="stylesheet" href="{$tpl}/css/userhead.css" />
+<link type="text/css" rel="stylesheet" href="{$tpl}/css/my.css" />
+<script type="text/javascript" src="/js/jquery.js"></script>
+
+</head>
+<body>
+{include file="{$path}header.htm"}
+<div class="content">
+  <div class="bor1">
+    <table width="100%" border="0" cellspacing="0" cellpadding="0">
+      <tr>
+        <td class="left" valign="top">
+        
+        {include file="{$path}my/menu.htm"}
+        
+        </td>
+        <td class="right" valign="top">
+        
+        
+<div class="all_list">
+  <div class="list_move"><a href='?action=members&operation=addrview'>添加收货地址</a></div>
+  <div class="list_out">管理收货地址</div>
+</div>
+<form id="form1" name="form1" method="post" action="{$tab}">
+  <table width="100%" border="0" cellspacing="0" cellpadding="3" class="table bor1">
+    <tr class="nav_tit">
+      <th style="width:30px;"></th>
+      <th>收货人</th>
+      <th>所在地区</th>
+      <th>街道地址</th>
+      <th>邮编</th>
+      <th>电话/手机</th>
+      <th> </th>
+      <th>操作</th>
+    </tr>
+    {section name=loop loop=$list}
+    <tr onmouseover="c=this.style.backgroundColor;this.style.backgroundColor='#f4f4f4';" onmouseout="this.style.backgroundColor=c;">
+      <td><input type="checkbox" name="check_id[]" id="gcheck" value='{$list[loop].id}'></td>
+      <td>{$list[loop].cname}</td>
+      <td>{$list[loop].province} {$list[loop].city} {$list[loop].county}</td>
+      <td>{$list[loop].address}</td>
+      <td>{$list[loop].zip}</td>
+      <td>{$list[loop].tel_code}-{$list[loop].tel}<br />
+        {$list[loop].mobile}</td>
+      <td>{if $list[loop].default_addr=="Y"}默认地址{/if}</td>
+      <td><a href="?action=members&operation=addrview&id={$list[loop].id}">修改</a></td>
+    </tr>
+    {/section}
+    <tr>
+      <td colspan="10"><input type="submit" value="删除" name="Button1" />
+        {$paging}</td>
+    </tr>
+  </table>
+</form>
+
+        
+        </td>
+      </tr>
+    </table>
+  </div>
+</div>
+{include file="{$path}my/myfooter.htm"}
+</body>
+</html>

@@ -1,0 +1,107 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>登录管理中心</title>
+<script type="text/javascript" src="js/jquery.js"></script>
+{literal}
+<style type="text/css">
+<!--
+body {
+	width: 100%;
+	margin: 0px auto;
+	font-size: 12px;
+	font-family: 宋体, Arial, Helvetica, sans-serif;
+}
+
+.msg {
+	border: 1px solid #ff6600;
+	height: 21px;
+	line-height: 21px;
+	background: url(images/admin/msg.png) no-repeat 8px -158px;
+	width: 266px;
+	margin: 0px auto;
+	background-color: #ffecdf;
+	text-indent: 30px;
+}
+.inputcss{
+	width:154px;
+	height:18px;
+	border-left:1px solid #666666;
+	border-top:1px solid #666666;
+	border-right:1px solid #cccccc;
+	border-bottom:1px solid #cccccc;
+	}
+.td1{
+	font-size:14px;
+	font-weight:bold;
+	text-align:right;
+	}
+-->
+</style>
+<script>
+$(function(){
+	$("#Submit").click(function(){
+		if($("#username").val()==""){
+			alert("用户名不能为空！");
+			$("#username").focus();
+			return false;				
+		}else if($("#password").val()==""){
+			alert("密码不能为空！");
+			$("#password").focus();
+			return false;				
+		}else if($("#verifycode").val()==""){
+			alert("请输入验证码！");
+			$("#verifycode").focus();
+			return false;				
+	}
+		return true;
+});
+	
+$(":text,:password").focus(function(){
+	$(this).addClass("input_move");		
+});
+ 
+$(":text,:password").blur(function(){
+	$(this).removeClass("input_move");
+});
+	 
+});
+</script>
+{/literal}
+</head>
+<body>
+<table width="100%" border="0" cellspacing="0" cellpadding="0" style="margin-top:80px;">
+  <tr>
+    <td align="right">
+    	<img src="images/admin/login_title.gif" />
+    </td>
+    <td style="width:16px;"><img src="images/admin/bg_login.gif" /></td>
+    <td align="left">
+        <form name="myform" action="?" method="post">
+      <table cellSpacing="2" cellPadding="3" border="0">
+        <tr>
+          <td class="td1">用户名：</td>
+          <td colspan="2"><input name="username" id="username" class="inputcss" value="{$username}" size="20" {$display}>{$username}</td>
+        </tr>
+        <tr>
+          <td class="td1">密 码 ：</td>
+          <td colspan="2"><input class="inputcss" type="password" id="password" size="20" name="password"></td>
+        </tr>
+        <tr>
+          <td class="td1">验证码：</td>
+          <td style="width:80px;"><input name="verifycode" id="verifycode" type="text" value="" maxLength=4 class="inputcss"></td>
+          <td><img src="/inc/vcode.php?t=general" onclick="this.src='/inc/vcode.php?'+Math.random()+'&t=general'" /></td>
+        </tr>
+        <tr>
+          <td class="td1"></td>
+          <td colspan="2"><input name="Submit" type="submit" id="Submit" value="登陆"></td>
+        </tr>
+      </table>
+    </form>
+    </td>
+  </tr>
+</table>
+
+</body>
+</html>

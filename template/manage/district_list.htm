@@ -1,0 +1,62 @@
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title></title>
+<link href="css/admincss.css" rel="stylesheet"type="text/css" />
+<script type="text/javascript" src="js/jquery.js"></script>
+<script language="javascript" src="js/Common.js" type="text/javascript"></script>
+{literal}
+<style type="text/css">
+	.district{
+		width:150px;
+		height:200px;
+		overflow:auto;
+		float:left;
+		border:1px solid #f0f0f0;
+		padding-left:8px;
+		margin-right:8px;
+	}
+	.district a{
+		display:block;
+		line-height:28px;
+		height:28px;
+		}
+	.district a:hover{
+		display:block;
+		line-height:28px;
+		height:28px;
+		background-color:#f4f4f4;
+		}
+</style>
+<script>
+$(function(){
+	$(".load_distr").live("click",function(){
+		$("#city"+(parseInt($(this).attr("levelid"))+1)).load("?act=list1&id="+$(this).attr("id"));
+		for(var i=parseInt($(this).attr("levelid"));i<5;i++){
+			$("#city"+(i+2)).html("");
+		}		
+	});
+});
+</script>
+{/literal}
+</head>
+
+<body>
+<div class="tbbody">
+
+  <div class="nav_bg1">地区列表</div>
+
+	<div class="district">
+	{section name=loop loop=$list} 
+	<a href="javascript:;" id="{$list[loop].id}" levelid="1" class="load_distr">{$list[loop].name}</a> 
+    {sectionelse}
+    没有数据...
+    {/section}
+    </div>
+    <div class="district" id="city2"></div>
+    <div class="district" id="city3"></div>
+    <div class="district" id="city4"></div>
+    <div style="clear:both;"></div>
+</div>
+</body>
+</html>

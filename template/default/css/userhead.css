@@ -1,0 +1,109 @@
+@charset "utf-8";
+/* CSS Document */
+body{
+	font-size:12px;
+	margin:0px auto;
+	
+	}
+.top{
+	line-height:25px;
+	height:25px;
+	border-bottom:1px solid #e0dede;
+	text-align:right;
+	background-color:#FFF;
+	
+	}
+.navhome{
+	float:left;
+	}
+.navhome img{
+	float:left;
+	}
+.navhome span{
+	line-height:25px;
+	padding-right:12px;
+	float:left;
+	background:url(../../images/post/ticon.gif) no-repeat right center;
+	}
+.navhome a{
+	text-align:left;
+	text-indent:5px;
+	}
+
+.header{
+	width:980px;
+	margin:0px auto;
+	text-align:left;
+	}
+.header a{
+	color:#333333;
+	text-decoration:none;
+	}
+.header a:hover{
+	color:#ff0000;
+	text-decoration:underline;
+	}
+.header ul{
+	margin:0px;
+	padding:0px;
+	float:right;
+	}
+.header ul li{
+	float:left;
+	list-style-type:none;
+	width:58px;
+	text-align:center;
+	
+}
+.header ul li a{
+	display:block;
+	float:left;
+	width:43px;
+	background:url(../../images/post/ticon.gif) no-repeat right center;
+	}
+.header ul li span{
+	display:block;
+	float:right;
+	line-height:28px;
+	width:15px;
+	}
+#topnavnone{
+	display:none;
+	}
+#topnav{
+	margin:0px;
+	padding:0px;
+	height:auto;
+	width:78px;
+	border:1px solid #e0dede;
+	border-top:0px;
+	position:absolute;
+	z-index:8888;
+	margin-top:25px;
+	background-color:#FFF;
+	display:none;
+	}
+#topnav li{
+	list-style-type:none;
+	width:78px;
+	line-height:23px;
+	}
+#topnav li a{
+	width:78px;
+	background-image:none;
+	}
+
+
+
+
+.foot{
+	width:980px;
+	margin:0px auto;
+	text-align:center;
+	line-height:25px;
+	}
+.copyright{
+	text-align:center;
+	line-height:25px;
+	background-color:#f4f4f4;
+	}

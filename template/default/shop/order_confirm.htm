@@ -1,0 +1,123 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>确认订单信息</title>
+<script type="text/javascript" src="/js/jquery.js"></script>
+<script type="text/javascript" src="/js/cart.js"></script>
+<link type="text/css" rel="stylesheet" href="{$domain}{$tpl}/css/style.css" />
+<link rel="stylesheet" type="text/css" href="{$domain}{$tpl}/css/cart.css" />
+</head>
+
+<body>
+{include file="{$path}header.htm"}
+<div class="bodyw">
+  <form action="confirm_order.php?act=add" method="post" name="form1" id="form1">    
+<!--    <table width="100%">
+    <tr>
+      <td><a href="{$domain}"><img src="{$domain}{$tpl}/images/logo.gif" alt="" /></a></td>
+      <td width="410" align="right"><div class="fabu_b">1. 我的购物车</div>
+    <div class="fabu_a">2. 确认订单信息</div>
+    <div class="fabu_b">3.成功提交订单</div>
+    <div class="clear"></div></td>
+    </tr>
+  </table>-->
+    <div class="cart_step">确认收货地址</div>
+    <ul class="cart_addess_ul">
+    {assign var="x" value="1"}
+    {section name=loop loop=$addr}
+      <li>
+        <div class="cart_addess_out{if $addr[loop].default_addr=='Y'} cart_addess_checked{/if}" id="address_{$x}" fid="{$addr[loop].id}">
+          <div class="cart_padd"> <font style="font-size:14px;">{$addr[loop].province} <b>{$addr[loop].city}</b></font> ({$addr[loop].cname} 收) <br />
+            {$addr[loop].county} {$addr[loop].address} <span>{$addr[loop].mobile} </span> </div>
+        </div>
+      </li>
+      {$x=$x+1}
+      {/section}
+    </ul>
+    <input name="order_addr" id="order_addr" type="hidden" value="{$order_addr}" />
+    <div class="clear"></div>
+    <div style="margin-top:8px;">
+      <input name="new_address" id="new_address" type="button" value="使用新地址" />
+    </div>
+    <div id="TB_overlayBG"></div>
+    <div id="new_address_add">
+      <div class="new_address_close"><img src="/images/wrong.gif" id="new_address_close" /></div>
+      <table width="780" border="0" cellspacing="0" cellpadding="0" class="car_tab">
+        <tr>
+          <td width="100" align="right" style="line-height:30px;">省：</td>
+          <td>
+          	<select name="province" id="txt_province">
+          		{html_options options=$province_options selected=$province}
+            </select>省(直辖市)
+			<select name="city" id="txt_city">
+            	{html_options options=$city_options selected=$city}
+            </select>市(地区)
+			<select name="county" id="txt_county">
+            	{html_options options=$county_options selected=$county}
+            </select>区(县)  邮政编码：
+            <input name="zip" id="txt_zip" type="text" class="input_1" size="6" maxlength="6" /></td>
+        </tr>
+        <tr>
+          <td align="right">街道地址：</td>
+          <td><textarea cols="60" name="address" id="txt_address"></textarea></td>
+        </tr>
+        <tr>
+          <td align="right">收货人姓名：</td>
+          <td><input type="text" name="cname" id="txt_cname" class="input_1" /></td>
+        </tr>
+        <tr>
+          <td align="right">电话：</td>
+          <td><input name="tel_code" type="text" id="txt_tel_code" size="4" maxlength="4" class="input_1" />
+            -
+            <input name="tel" id="txt_tel" type="text" size="15" maxlength="8" class="input_1" />
+            格式：区号 - 电话号码</td>
+        </tr>
+        <tr>
+          <td align="right">手机：</td>
+          <td><input name="mobile" id="txt_mobile" type="text" maxlength="11" class="input_1" />
+            电话和手机请至少填写一个</td>
+        </tr>
+        <tr>
+          <td align="right">&nbsp;</td>
+          <td><input type="button" name="addressbtn" id="addressbtn" value="确定" /></td>
+        </tr>
+      </table>
+    </div>
+    <div class="cart_step"><span>订单号：<b>{$order_num}</b></span>确认订单信息</div>
+    <table width="100%" border="0" cellspacing="2" cellpadding="5" class="cart_table">
+      <tr>
+        <td class="cart_td_2">店铺：</td>
+        <td class="cart_td_1">单价(元)</td>
+        <td class="cart_td_1">数量</td>
+        <td class="cart_td_1">小计(元)</td>
+        <td class="cart_td_1">运费</td>
+      </tr>
+      {section name=order loop=$list}
+      <tr>
+        <td style="line-height:25px;"><img src="/upload/{$list[order].small_photo}" align="left" style="width:50px; height:50px; border:1px solid #d3d1cf; margin:5px; padding:1px;" />{$list[order].Prod_name}<br />{$list[order].property}</td>
+        <td>{$list[order].prod_price1}</td>
+        <td><input type="text" name="nums" id="nums" style="width:25px;" class="input_1" disabled="disabled" value="{$list[order].product_num}" /></td>
+        <td style="color:#ff0000;">{$list[order].total_price}</td>
+        <td>0</td>
+      </tr>
+      {sectionelse}	购物车没有商品...
+      {/section}
+    </table>
+    <div class="cart_remark">
+      <div class="cart_left"> 付款方式：{html_radios name="txt_pay_ment" options=$pay_ment_options checked=$pay_ment_checked separator=" "}<br />
+        补充说明：
+        <textarea name="txt_remark" id="txt_remark" class="input_2"></textarea>
+      </div>
+      <div class="cart_right"></div>
+      <div class="clear"></div>
+    </div>
+    <div class="cart_fukuan">实付款：<span id="money">{$money}</span></div>
+    <div class="cart_submit">
+      <input name="cartbtn" id="cartadd" type="button" value="" />
+    </div>
+  </form>
+</div>
+{include file="{$path}footer.htm"}
+</body>
+</html>

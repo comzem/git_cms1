@@ -1,0 +1,61 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>优化</title>
+<link href="css/admincss.css" rel="stylesheet"type="text/css" />
+<link href="css/common.css" rel="stylesheet"type="text/css" />
+<script type="text/javascript" src="js/jquery.js"></script>
+<script type="text/javascript" src="js/Common.js"></script>
+</head>
+
+<body>
+<div class="mbody">
+<div class="pagetit">
+  <div class="ptit"> 数据库</div>
+  <div class="topnav"> <a href="?action=tools&operation=mydb"><u>备份</u></a> <a href="?action=tools&operation=restoreview" ><u>恢复</u></a> <a href="?action=tools&operation=mydb&t=optimize" class="select"><u>优化</u></a>
+    <div class="clear"></div>
+  </div>
+  <div class="clear"></div>
+</div>
+
+<div class="toptip">
+  <h2>提示：</h2>
+  <p>数据表优化可以去除数据文件中的碎片，使记录排列紧密，提高读写速度。 </p>
+</div>
+<form id="form1" name="form1" method="post" action="?action=tools&operation=optimize">
+  <table width="100%" border="0" cellspacing="0" cellpadding="0" class="table">
+    <tr class="nav_tit">
+      <th style="width:30px;"></th>
+      <th>数据表名</th>
+      <th>记录数</th>
+      <th>大小</th>
+      <th>更改时间</th>
+      <th>碎片byte</th>
+    </tr>
+    {section name=loop loop=$list}
+    <tr onmouseover="c=this.style.backgroundColor;this.style.backgroundColor='#f4f4f4';" onmouseout="this.style.backgroundColor=c;">
+      <td><input type="checkbox" name="check_id[]" id="gcheck" value='{$list[loop].Name}'></td>
+      <td>{$list[loop].Name}</td>
+      <td>{$list[loop].Rows}</td>
+      <td> {if $list[loop].Data_length>=1048576}
+        {$list[loop].Data_length/1024/1024}MB
+        {else if $list[loop].Data_length>=1024}
+        {$list[loop].Data_length/1024}KB
+        {else}
+        {$list[loop].Data_length}B
+        {/if}</td>
+      <td>{$list[loop].Update_time}</td>
+      <td>{$list[loop].Data_free}</td>
+    </tr>
+    {/section}
+    <tr>
+    	<td><input id="chkAll" name="chkAll" type="checkbox" /></td>
+    	<td colspan="5"><input name="submit" type="submit" class="admin_submit" value="优化表" /></td>
+    </tr>
+  </table>
+  <div class="footer link_lan"> {$foot_msg} </div>
+</form>
+</div>
+</body>
+</html>

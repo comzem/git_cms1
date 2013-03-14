@@ -1,0 +1,159 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>快速注册_{$webname}</title>
+<link type="text/css" rel="stylesheet" href="{$domain}{$tpl}/css/all.css" />
+<link href="{$domain}{$tpl}/css/reg.css" rel="stylesheet"type="text/css" />
+<link type="text/css" rel="stylesheet" href="{$domain}{$tpl}/css/style.css" />
+<script type="text/javascript" src="/js/jquery.js"></script>
+<script type="text/javascript" src="/js/detail.js"></script>
+{literal}
+<script type="text/javascript">
+
+String.prototype.trim = function () { return this.replace(/(^\s*)|(\s*$)/g, ""); }
+var result=true;
+function verify_login_id() {
+	var input_msg=document.getElementById("login_id_msg");
+	var txt_id=document.getElementById("username");							
+	$.get("../includes/ajax.php?chk=userid&checkid="+txt_id.value.trim(),function(data, textStatus){				               
+		if (data>0){
+			input_msg.className = "js_left";
+			input_msg.innerHTML = "用户名已存在！";
+			result=false;}
+		});
+		if (txt_id.value.trim().length<4 || txt_id.value.trim().length>20) {
+			input_msg.className = "js_left";
+			input_msg.innerHTML = "用户名长度不正确，4-20个字符内，请重新输入";
+			result=false;
+		}else {
+			input_msg.className = "js_left1";
+			input_msg.innerHTML = "";
+			}
+	return result;
+}
+function verify_email() {
+	var email = /^([a-zA-Z0-9]+[_|\_|\.]?)*[a-zA-Z0-9]+@([a-zA-Z0-9]+[_|\_|\.]?)*[a-zA-Z0-9]+\.[a-zA-Z]{2,3}$/;
+	var txt_email=document.getElementById("email");
+	var input_msg=document.getElementById("email_msg");
+	var result=true;
+	if (!email.test(txt_email.value)) {
+		input_msg.className = "js_left";
+		input_msg.innerHTML = "请输入常用Email,以便忘记密码时帮您找回";
+		result=false;
+	}
+	else {
+		$.get("../includes/ajax.php?chk=useremail&checkid="+txt_email.value,function(data, textStatus){
+			if (data>0){
+				input_msg.className = "js_left";
+				input_msg.innerHTML = "Email已存在";
+				result=false;
+			}else{
+				input_msg.className = "js_left1";
+				input_msg.innerHTML = "";
+			}
+		});				                
+	} 
+	return result;
+}
+
+function verify_user_pw() {
+	var input_msg=document.getElementById("user_pw_msg");
+	if (document.getElementById("password").value.trim() == "") {
+		input_msg.className = "js_left";
+		input_msg.innerHTML = "不能为空";
+		return false;
+	}else {
+		input_msg.className = "js_left1";
+		input_msg.innerHTML = "";
+		return true;
+	}
+}
+
+function Result(){
+   if (verify_login_id() && verify_user_pw() && verify_email()){
+		return true;
+   }
+   else{
+		alert("您的资料填写错误");
+		return false;
+   }
+}
+    </script>
+{/literal}
+</head>
+<body>
+{include file="{$path}header.htm"}
+
+<div class="bodyw">
+  <div class="reg_bor">
+  <div class="reg_nav">新用户注册</div>
+    <form action="?act=register" method="post" name="form1">
+      <table width="100%" border="0" cellspacing="0" cellpadding="5" class="table">
+        <tr>
+          <td colspan="2" style=" margin-bottom:10px;">
+          <div class="fabu_b">快速注册</div>
+          <div class="fabu_a">1. 填写用户名密码等信息</div>
+    <div class="fabu_b">2. 注册成功</div>
+    <div class="clear"></div>
+          </td>
+          <td rowspan="9" class="righttab">&nbsp;</td>
+        </tr>
+        <tr>
+          <td width="100" align="right">用 户 名：</td>
+          <td><input type="text" name="username" id="username" class="stit" onblur="return verify_login_id()" />
+            <div id="login_id_msg">4-20个字符（包括小写字母、数字、下划线） </div></td>
+        </tr>
+        <tr>
+          <td align="right">电子邮箱：</td>
+          <td width="550"><input type="text" name="email" id="email" class="stit" onblur="return verify_email()" />
+            <div id="email_msg"> 请输入常用的电子邮箱，以便您忘记密码时帮您找回 </div></td>
+        </tr>
+        <tr>
+          <td align="right">登录密码：</td>
+          <td><input type="password" name="password" id="password" class="stit" onblur="return verify_user_pw()" />
+            <div id="user_pw_msg">4-20个字符（包括小写字母、数字、下划线）</div></td>
+        </tr>
+        <tr>
+          <td align="right">确认密码：</td>
+          <td><input name="password1" id="password1" class="stit" type="password" />
+            <br />
+            再一次输入密码</td>
+        </tr>
+        <tr>
+          <td align="right">验 证 码：</td>
+          <td><table>
+              <tr>
+                <td><input name="verifycode" type="text" id="verifycode" size="8" class="input1" /></td>
+                <td><img src="/inc/vcode.php?t=general" onclick="this.src='/inc/vcode.php?'+Math.random()+'&t=general'" /></td>
+              </tr>
+            </table></td>
+        </tr>
+        <tr>
+          <td align="right">&nbsp;</td>
+          <td>阅读并同意《网站服务条款》</td>
+        </tr>
+        
+        <tr>
+          <td align="right">&nbsp;</td>
+          <td>
+          <table>
+          	<tr>
+            	<td><input name="regsubmit" type="submit" value="" class="zuche" onclick="return Result()" /></td>
+                <td><input name="" class="reset" type="reset" value="" /></td>
+            </tr>
+          </table>
+                    
+          </td>
+        </tr>
+        <tr>
+          <td align="right">&nbsp;</td>
+          <td>已有账号？<a href="/my/login.php">立即登陆</a></td>
+        </tr>
+      </table>
+    </form>
+  </div>
+</div>
+{include file="{$path}footer.htm"}
+</body>
+</html>

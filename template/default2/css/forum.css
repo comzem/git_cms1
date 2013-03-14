@@ -1,0 +1,26 @@
+@charset "utf-8";
+/* CSS Document */
+body {
+	width:980px;
+	background: #fff;
+	margin: 0 auto;
+	font-size: 12px;
+	font-family: "宋体", Arial, Helvetica, sans-serif;
+}
+.bor{
+	border:1px solid #c2d5e3;
+	border-top:0px;
+	margin-bottom:10px;
+	}
+.subject{
+	border-top:1px solid #c2d5e3;
+	border-bottom:1px solid #c2d5e3;
+	line-height:31px;
+	text-indent:20px;
+	font-size:14px;
+	font-weight:bold;
+	background:url(../images/forum/linebg.jpg) repeat-x;
+	}
+.fl_tb{
+	margin:8px;
+	}

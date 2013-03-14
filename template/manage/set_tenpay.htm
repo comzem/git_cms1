@@ -1,0 +1,55 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>财付通设置</title>
+<link href="css/admincss.css" rel="stylesheet"type="text/css" />
+<script type="text/javascript" src="js/jquery.js"></script>
+<script type="text/javascript" src="js/Common.js"></script>
+</head>
+
+<body>
+<div class="nav_bg1"><b>支付设置</b></div>
+<div class="tbbody">
+<form name="form1" method="post" action="?act=add&operation=tenpay">  
+  <div class="nav_bg">担保交易设置</div>
+  <table width="100%" border="0" cellpadding="3" cellspacing="1">
+    <tr>
+      <td colspan="2"><b>担保交易收款账号:</b></td>
+      </tr>
+    <tr>
+      <td class="tdleft"><input type="text" name="a0" id="a0" class="w250" value="{$a0}"></td>
+      <td>开通了担保交易权限的财付通账号，如您没有开通担保交易权限，<A href="http://union.tenpay.com/mch/mch_register_1.shtml" target="_blank">请点击这里申请</A></td>
+    </tr>
+    <tr>
+      <td colspan="2"><b>担保交易账号密钥:</b></td>
+      </tr>
+    <tr>
+      <td class="tdleft"><input type="text" name="a1" id="a1" class="w250" value="{$a1}"></td>
+      <td>&nbsp;</td>
+    </tr>
+  </table>
+<div class="nav_bg">即时到账设置</div>
+<table width="100%" border="0" cellpadding="3" cellspacing="1">
+    <tr>
+      <td colspan="2"><b>财付通即时到账商户号:</b></td>
+      </tr>
+    <tr>
+      <td class="tdleft"><input type="text" name="a2" id="a2" class="w250" value="{$a2}"></td>
+      <td>请填写真实有效的财付通企业版账号，用于支付的相关款项。如账号无效或密钥有误，将导致用户支付后无法正确对其积分账户自动充值。<BR>
+        如您没有财付通帐号，<A href="http://union.tenpay.com/mch/mch_register.shtml?sp_suggestuser=fc@comsenz.com" target="_blank">请点击这里注册</A></td>
+    </tr>
+    <tr>
+      <td colspan="2"><b>即时到账密钥:</b></td>
+      </tr>
+    <tr>
+      <td class="tdleft"><input type="text" name="a3" id="a3" class="w250" value="{$a3}"></td>
+      <td>&nbsp;</td>
+    </tr>
+  </table>
+
+  <input id="Submit1" type="submit" value="保存" />
+</form>
+</div>
+</body>
+</html>

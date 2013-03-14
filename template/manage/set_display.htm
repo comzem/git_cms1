@@ -1,0 +1,77 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>显示设置</title>
+<link href="css/admincss.css" rel="stylesheet"type="text/css" />
+<link href="css/common.css" rel="stylesheet"type="text/css" />
+<script type="text/javascript" src="js/jquery.js"></script>
+<script type="text/javascript" src="js/Common.js"></script>
+</head>
+
+<body>
+<div class="mbody">
+<div class="pagetit">
+  <div class="ptit">站点设置</div>
+  <div class="topnav">
+    <a href="?action=sysconfig&operation=view&type=seo"><u>SEO设置</u></a>
+    <a href="?action=sysconfig&operation=view&type=display" class="select"><u>显示设置</u></a>
+    <a href="?action=sysconfig&operation=view&type=system"><u>系统设置</u></a>
+  <div class="clear"></div>
+  </div>
+  <div class="clear"></div>
+</div>
+
+<form name="form1" method="post" action="admin.php?action=sysconfig&operation=save&type=display">  
+  <table border="0" cellspacing="1" cellpadding="3" class="stripe_tb">
+    <tr>
+      <td colspan="2"><b>默认的排序依据</b></td>
+      </tr>
+    <tr>
+      <td class="tdleft"><select name="d0">{html_options options=$d0_options selected=$d0}</select></td>
+      <td>* 在商品列表页中商品的排序依据条件 </td>
+    </tr>
+    <tr>
+      <td colspan="2"><b>默认的排序方式</b></td>
+      </tr>
+    <tr>
+      <td class="tdleft"><select name="d1">{html_options options=$d1_options selected=$d1}</select></td>
+      <td>* 在商品列表页中商品的排序方式 </td>
+    </tr>
+    <tr>
+      <td colspan="2"><b>列表默认展示方式</b></td>
+      </tr>
+    <tr>
+      <td class="tdleft"><select name="d2">{html_options options=$d2_options selected=$d2}</select></td>
+      <td>* 在商品列表页中商品的展示样式 </td>
+    </tr>
+    <tr>
+      <td colspan="2"><b>列表展示商品数量</b></td>
+      </tr>
+    <tr>
+      <td class="tdleft"><input type="text" name="d3" id="d3" class="input_100" value="{$d3}"></td>
+      <td>&nbsp;</td>
+    </tr>
+    <tr>
+      <td colspan="2"><b>是否显示价格</b></td>
+      </tr>
+    <tr>
+      <td class="tdleft">{html_radios name="d4" class="mode" options=$d4_options checked=$d4 separator=" "}</td>
+      <td>&nbsp;</td>
+    </tr>
+    <tr>
+      <td colspan="2"><b>显示ID</b></td>
+    </tr>
+    <tr>
+      <td colspan="2">
+      银行帐号ID:<input type="text" name="d5" id="d5" class="input_100" value="{$d5}">
+      售后服务ID:<input type="text" name="d6" id="d6" class="input_100" value="{$d6}"></td>
+    </tr>
+  </table>
+
+
+  <input id="Submit1" type="submit" value="保存" />
+</form>
+</div>
+</body>
+</html>

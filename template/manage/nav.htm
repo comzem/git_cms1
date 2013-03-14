@@ -1,0 +1,109 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>导航设置</title>
+<link href="css/admincss.css" rel="stylesheet"type="text/css" />
+<link href="css/common.css" rel="stylesheet"type="text/css" />
+<script type="text/javascript" src="js/jquery.js"></script>
+<script type="text/javascript" src="js/Common.js"></script>
+<script type="text/javascript" src="js/set.js"></script>
+{literal}
+<script type="text/javascript">
+
+var i=0;
+function add_child(adr,upid){	
+	var str_1="<tr><td><input name='add_upid[]' type='hidden' value='"+upid+"' /><input type='text' name='add_sort[]' class='input_28' /></td><td><input type='text' name='add_title[]' class='input_180' /></td><td><input type='text' name='add_urls[]'  class='input_240' /></td><td><input name='add_target("+i+")' type='checkbox' value=\"_blank\" /></td><td><a href='javascript:;' onclick='remove_child(this)'>[删除]</a></td></tr>";
+	$("#"+adr).before(str_1);
+	i++;
+}
+function add_sub(adr,upid){	
+	var str_1="<tr><td style='background:#fff url(images/add__5.gif) no-repeat left 11px;'><input name='add_upid[]' type='hidden' value='"+upid+"' /></td><td><input type='text' name='add_sort[]' class='input_28' />&nbsp;&nbsp;&nbsp;&nbsp;<input type='text' name='add_title[]' class='input_180' /></td><td><input type='text' name='add_urls[]'  class='input_240' /></td><td><input name='add_target("+i+")' type='checkbox' value=\"_blank\" /></td><td><a href='javascript:;' onclick='remove_child(this)'>[删除]</a></td></tr>";
+	$("#"+adr).append(str_1);
+	i++;
+}
+
+function remove_child(k){
+	$(k).parent().parent().remove();
+	return true;
+}
+</script>
+
+{/literal}
+</head>
+
+<body>
+<div class="mbody">
+<div class="pagetit">
+  <div class="ptit"> 导航设置</div>
+  <div class="topnav"> <a href="?action=tools&operation=nav&fid=1" class="select"><u>主导航</u></a> <a href="?action=tools&operation=nav&fid=3" ><u>底部导航</u></a>
+    <div class="clear"></div>
+  </div>
+  <div class="clear"></div>
+</div>
+
+
+<form id="form1" name="form1" method="post" action="{$tab}">
+<table width="100%" border="0" cellspacing="0" cellpadding="0" class="tablenav">
+<thead>
+  <tr>
+    <th class="w_60">顺序</th>
+    <th class="w_335">导航名称</th>
+    <th class="w_335">链接地址</th>
+    <th class="w_195">新窗</th>
+    <th>操作</th>
+  </tr>
+  </thead>
+  {section name=sec1 loop=$nav}
+  <tbody id="tbody_{$nav[sec1].fid}">
+  <tr>
+    <td><input name='edit_fid[]' type='hidden' value='{$nav[sec1].fid}' /><input type='text' name='edit_sort[]' value="{$nav[sec1].sort}" class="input_28" /></td>
+    <td>
+    <input type='text' name='edit_title[]' value="{$nav[sec1].title}" class="input_180" />
+    <a href="javascript:;" onclick="add_sub('tbody_{$nav[sec1].fid}','{$nav[sec1].fid}')"><img src="images/add_1.gif" border="0" />&nbsp;&nbsp;添加二级导航</a>
+    </td>
+    <td><input type='text' name='edit_urls[]' value="{$nav[sec1].urls}" class="input_240" /></td>
+    <td>
+    {html_checkboxes name="edit_target({$nav[sec1].fid})" options=$nav[sec1].target_options checked=$nav[sec1].target separator=" "}
+    </td>
+    <td><a href='javascript:;'>[编辑]</a> <a href='?action=tools&operation=navdel&upid={$nav[sec1].fid}' onclick="if(confirm('删除此导航，将同时删除子导航。确定删除吗'))return true;return false;">[删除]</a></td>
+  </tr>
+  
+  
+  {section name=sec2 loop=$nav[sec1].sub}
+  <tr>
+  <td style='background:#fff url(images/add__5.gif) no-repeat left 11px;'><input name='edit_fid[]' type='hidden' value='{$nav[sec1].sub[sec2].fid}' /></td>
+  <td>
+  <div style="float:left;">
+  <input type='text' name='edit_sort[]' class='input_28' value="{$nav[sec1].sub[sec2].sort}" />
+  </div>
+  <div style="float:left; padding-left:12px;"><input type='text' name='edit_title[]' class='input_180' value="{$nav[sec1].sub[sec2].title}" /></div>
+  </td>
+  <td><input type='text' name='edit_urls[]'  class='input_240' value="{$nav[sec1].sub[sec2].urls}" /></td>
+  <td>
+  {html_checkboxes name="edit_target({$nav[sec1].sub[sec2].fid})" options=$nav[sec1].sub[sec2].target_options checked=$nav[sec1].sub[sec2].target separator=" "}
+  </td>
+  <td><a href='javascript:;'>[编辑]</a> <a href='?action=tools&operation=navdel&fid={$nav[sec1].sub[sec2].fid}' onclick="if(confirm('确定删除吗'))return true;return false;">[删除]</a></td>
+  </tr>
+  {/section}
+  
+  
+  </tbody>
+  {/section}
+  <tbody id="tbody_0">
+  <tr>
+  	<td colspan="5"><a href="javascript:;" onclick="add_child('tbody_0','{$fid}')"><img src="images/add_1.gif" border="0" />&nbsp;&nbsp;添加导航</a></td>
+  </tr>
+  </tbody>
+  <tr>
+  	<td colspan="5"><input name="submit" type="submit" class="admin_submit" value="提交" /></td>
+  </tr>
+ 
+</table>
+
+</form>
+</div>
+
+
+</body>
+</html>

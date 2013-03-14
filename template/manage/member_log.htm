@@ -1,0 +1,45 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title></title>
+<link href="css/admincss.css" rel="stylesheet"type="text/css" />
+<script type="text/javascript" src="js/jquery.js"></script>
+<script language="javascript" src="js/Common.js" type="text/javascript"></script>
+</head>
+
+<body>
+<form id="form1" name="form1" method="post" action="member_userlog.php?act={$tab}">
+<table width="100%" border="0" cellspacing="0" cellpadding="3" class="table">
+	<tr class="nav_tit">
+
+    			<th style="width:30px;"><input id="chkAll" type="checkbox" onclick="checkAll('gcheck')" /></th>
+
+<th>登陆时间</th>
+<th>登陆IP</th>
+<th>操作</th></tr>
+
+	{section name=loop loop=$list}
+<tr onmouseover="c=this.style.backgroundColor;this.style.backgroundColor='#f4f4f4';" onmouseout="this.style.backgroundColor=c;">
+
+    			 <td><input type="checkbox" name="check_id[]" id="gcheck" value='{$list[loop].id}'></td>
+
+<td>{$list[loop].login_time}</td>
+<td>{$list[loop].login_ip}</td>
+<td>
+
+			      <a href="#" onclick="return getDel(this,'{$list[loop].id}','member_userlog.php')">删除</a>
+
+			      </td>
+</tr>
+{sectionelse}
+没有数据...
+{/section}
+<tr><td colspan="5">
+			      <input type="submit" value="删除" name="Button1" onclick="return del_check(this.form,'member_userlog.php')" />
+			      {$paging}</td></tr>
+</table>
+</form>
+
+</body>
+</html>

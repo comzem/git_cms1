@@ -1,0 +1,137 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>{$seotitle}-{$webname}</title>
+<meta name="keywords" content="{$keywords}" />
+<meta name="description" content="{$description}" />
+<link rel=stylesheet type=text/css href="{$tpl}/css/all.css">
+<link type="text/css" rel="stylesheet" href="{$tpl}/css/style.css" />
+<script type=text/javascript src="js/jquery.js"></script>
+</head>
+
+<body>
+
+{include file="{$path}header.htm"}
+<DIV class=content>
+  <DIV class=width960>
+    <DIV class="jdt fl"> 
+    {literal} 
+      <SCRIPT type=text/javascript src="js/jquery.slide.js"></SCRIPT> 
+      <SCRIPT type=text/javascript>
+			$(function(){
+				$("#jdtslide").KinSlideshow({
+					moveStyle:"left",
+					intervalTime:3,
+					mouseEvent:"mouseover",
+					titleBar:{"titleBar_bgColor":""},
+					titleFont:{TitleFont_size:14,TitleFont_color:"#ffffff"}
+				});
+			})
+			</SCRIPT>
+            {/literal} 
+      <DIV style="VISIBILITY: hidden" id=jdtslide>
+      {section name=loop loop=$tu}
+      	<a href="{$tu[loop].url}" title="{$tu[loop].title}" target="_blank"><img src="{$tu[loop].attach}" alt="" width="700" height="300" /></a>
+        {/section}
+      </DIV>
+    </DIV>
+    <DIV class="fr action_list">
+      <DIV class=action_tt>
+        <H3>网站公告</H3>
+      </DIV>
+      <UL class=mat5>
+        {section name=loop loop=$news}
+        <li><a href="article/details.php?id={$news[loop].aid}" title="{$news[loop].title}" target="_blank">{$news[loop].title}</a></li>
+        {sectionelse}
+        没有数据...
+        {/section}
+      </UL>
+    </DIV>
+    <DIV class=clear></DIV>
+  </DIV>
+  <DIV class=index_main>
+    <DIV class=pro_tuijian>
+      <DIV class=mal10><IMG src="{$tpl}/images/pro_tuijian.gif"></DIV>
+      <DIV>
+        
+        {section name=loop loop=$list}
+        <div class="prolist_1" >
+          <p class="prolist_img"><a href="shop/item.php?id={$list[loop].pid}" title="{$list[loop].title}" target="_blank"><img src="{$list[loop].photo}" title="{$list[loop].title}" /></a></p>
+          <p class="prolist_name"><a href="shop/item.php?id={$list[loop].pid}" title="{$list[loop].title}" target="_blank">{$list[loop].title}</a></p>
+          {if $jgdisplay=='1'}
+          <p><span class="num cred strong">¥</span><span class="num1 cred strong">{$list[loop].price1}</span> <s class="num c888">¥ {$list[loop].price1*1.5}</s></p>
+          {/if}
+        </div>
+        {sectionelse}	没有数据...
+        {/section}
+        <DIV class=clear></DIV>
+      </DIV>
+    </DIV>
+    
+    <DIV class=clear></DIV>
+    <!--分类1 Start-->
+    
+    
+     
+    {section name=sec1 loop=$plist}
+    <div class="index_fenlei mat10">
+      <div class="index_fenlei_tt">
+        <h3 class="fl">{$plist[sec1].title}</h3>
+        <span class="fr"><a href="shop/search_product.php?id={$plist[sec1].fid},0" title="{$plist[sec1].title}" target="_blank">更多>></a></span> </div>
+      <div class="index_prolist">
+      
+        <div class="fl prolist_left">
+        {section name=loop loop=$plist[sec1].sub1}
+          <div class="prolist_1">
+            <p class="prolist_img"><a href="shop/item.php?id={$plist[sec1].sub1[loop].pid}" title="{$plist[sec1].sub1[loop].title}" target="_blank"><img src="{$plist[sec1].sub1[loop].photo}" title="{$plist[sec1].sub1[loop].title}" /></a></p>
+            <p class="prolist_name"><a href="shop/item.php?id={$plist[sec1].sub1[loop].pid}" title="{$plist[sec1].sub1[loop].title}" target="_blank">{$plist[sec1].sub1[loop].title}</a></p>
+            {if $jgdisplay=='1'}
+            <p><span class="cred num strong">¥</span><span class="num1 cred strong">{$plist[sec1].sub1[loop].price1}</span> <s class="num c888">¥ {$plist[sec1].sub1[loop].price1*1.5}</s></p>
+            {/if}
+          </div>
+          {/section}
+        </div>
+        <div class="fr prolist_right">
+          <div class="prolist_right_tt">
+            <h3>{$plist[sec1].title}热销排行</h3>
+          </div>
+          <ul class="hotlist index_hot" style="height:386px;">
+          {section name=loop loop=$plist[sec1].sub2}
+            <li> <span class="fl hotimg"> <a href="shop/item.php?id={$plist[sec1].sub2[loop].pid}" title="{$plist[sec1].sub2[loop].title}" target="_blank"><img src="{$plist[sec1].sub2[loop].photo}" title="{$plist[sec1].sub2[loop].title}" /></a> </span> <span class="fl hotname hotname_index"> <a href="shop/item.php?id={$plist[sec1].sub2[loop].pid}" title="{$plist[sec1].sub2[loop].title}" target="_blank">{$plist[sec1].sub2[loop].title}</a> <span class="lh20">
+            {if $jgdisplay=='1'}商城价：<span class="cred num strong">¥</span><span class="num1 cred strong">{$plist[sec1].sub2[loop].price1}</span>{/if}
+            </span> </span>
+              <div class="clear"></div>
+            </li>
+{/section}
+          </ul>
+        </div>
+        <div class="clear"></div>
+      </div>
+    </div>
+    {/section}
+    
+    
+    <!--分类1 End--></DIV>
+</DIV>
+﻿
+<DIV class=clear></DIV>
+<DIV class=foot>
+  {include file="{$path}endhelp.htm"}
+  <DIV class=flink><SPAN class=strong>友情链接：</SPAN> {section name=loop loop=$links}
+			<a href="{$links[loop].url}" target="_blank">{$links[loop].sitename}</a>
+        {/section}
+   </DIV>
+  <DIV class=subnav>
+  <div class="footnav">
+    {section name=loop loop=$endnav}
+		<a href="{$endnav[loop].urls}" title="{$endnav[loop].title}" target="{$endnav[loop].target}">{$endnav[loop].title}</a>
+    {/section}
+        </div>
+    {$footmsg}
+  </DIV>
+</DIV>
+
+
+</body>
+</html>

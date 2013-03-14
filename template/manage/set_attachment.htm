@@ -1,0 +1,61 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>上传设置</title>
+<link href="css/admincss.css" rel="stylesheet"type="text/css" />
+<link href="css/common.css" rel="stylesheet"type="text/css" />
+<script type="text/javascript" src="js/jquery.js"></script>
+<script type="text/javascript" src="js/Common.js"></script>
+</head>
+
+<body>
+<div class="mbody">
+<div class="pagetit">
+  <div class="ptit">附件设置</div>
+  <div class="topnav">
+    <a href="?action=sysconfig&operation=view&type=attachment" class="select"><u>附件设置</u></a>
+    <a href="?action=sysconfig&operation=view&type=water"><u>水印设置</u></a>
+  <div class="clear"></div>
+  </div>
+  <div class="clear"></div>
+</div>
+ 
+  <form name="form1" method="post" action="admin.php?action=sysconfig&operation=save&type=attachment">
+    <table border="0" cellspacing="1" cellpadding="3" class="stripe_tb">
+      <tr>
+        <td colspan="2"><b>上传尺寸上限：</b></td>
+      </tr>
+      <tr>
+        <td><input type="text" name="a0" id="a0" class="w250" value="{$a0}" /></td>
+        <td><span>单位：KB，只有尺寸小于当前设置的尺寸才上传，默认为500KB</span></td>
+      </tr>
+      <tr>
+        <td colspan="2"><b>允许的文件扩展名：</b></td>
+      </tr>
+      <tr>
+        <td class="tdleft"><input name="a1" id="a1" class="w250" value="{$a1}" /></td>
+        <td><span>只允许这些扩展名结尾的文件上传，每行一个，不区分大小写，留空为不限制</span></td>
+      </tr>
+      <tr>
+        <td colspan="2"><b>缩略图：</b></td>
+      </tr>
+      <tr>
+        <td class=""><input type="text" name="a2" id="a2" class="w100" value="{$a2}" />
+          ×
+          <input type="text" name="a3" id="a3" class="w100" value="{$a3}" /></td>
+        <td><span>如果上传一些尺寸很大的数码图片，则程序会按照本设置进行生成相应的小图片，默认大小为 300*300</span></td>
+      </tr>
+      <tr>
+        <td colspan="2"><b>图片存放设置：</b></td>
+      </tr>
+      <tr>
+        <td class=""> {html_radios name="a4" class="mode" options=$a4_options checked=$a4 separator=" "} </td>
+        <td></td>
+      </tr>
+    </table>
+    <input id="Submit1" type="submit" value="保存" />
+  </form>
+</div>
+</body>
+</html>

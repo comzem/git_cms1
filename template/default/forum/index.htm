@@ -1,0 +1,56 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>{$webname}</title>
+<link type="text/css" rel="stylesheet" href="{$domain}{$tpl}/css/style.css" />
+<script type="text/javascript" src="/js/jquery.js"></script>
+<script type="text/javascript" src="/js/cms.js"></script>
+</head>
+
+<body>
+{include file="{$path}header.htm"}
+<form action="" method="post" name="form1">
+<div class="content">
+
+<div class="promain js_menuhtml" style="display:">
+      <div class="plmain" id="js_askhtml">
+        <div class="xuxian1"></div>
+        <div class="zixunbox">
+          <div class="fl pl_l"></div>
+          <div class="fl pl_m">请在这里提交您的留言</div>
+          <div class="fl pl_r"></div>
+          <div class="clear"></div>
+          
+          <table width="100%" border="0" cellspacing="0" cellpadding="0">
+            <tr>
+              <td valign="top">用户名称：</td>
+              <td>{$username}</td>
+            </tr>
+            <tr>
+              <td valign="top">标题：</td>
+              <td>
+              <input name="subject" type="text" class="forum_input" id="subject" size="50" />
+              您可输入80个字</td>
+            </tr>
+            <tr>
+              <td valign="top">留言内容：</td>
+              <td><textarea name="ask_text" fid="1" id="ask_text" style="width:650px;height:120px;resize:none;"></textarea></td>
+            </tr>
+            <tr>
+              <td></td>
+              <td><input type="button" id="zhixun" value="提交" class="tj_btn"></td>
+            </tr>
+          </table>
+          <div class="plmain">
+          		
+             <span id="js_askhtml"></span>
+         </div>
+        </div>
+      </div>
+    </div>
+</div>
+</form>
+{include file="{$path}footer.htm"}
+</body>
+</html>

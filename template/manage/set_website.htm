@@ -1,0 +1,94 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>系统配置参数</title>
+<link href="css/admincss.css" rel="stylesheet"type="text/css" />
+<link href="css/common.css" rel="stylesheet"type="text/css" />
+<script type="text/javascript" src="js/jquery.js"></script>
+<script type="text/javascript" src="js/Common.js"></script>
+{literal}
+<script type="text/javascript">
+function up_check(form,tab,hide,path,filename)
+{
+	$("#img_"+hide).attr("src","/images/loading1.gif");
+	form.action="/inc/upload.php?tt=0&hide="+hide+"&path="+path+"&filename="+filename+"&fname="+$("#s8").val();
+	form.target="upload_frame";
+	form.submit();
+	form.action=tab;form.target="_self";
+}
+function say(t,s) {	
+  if (t.trim()+"a"!="a")
+  {
+	  document.getElementById(s).value=t;
+	  $("#img_"+s).attr("src","/"+t);
+  }
+}
+</script>
+{/literal}
+</head>
+
+<body>
+<div class="mbody">
+<div class="pagetit">
+  <div class="ptit">站点设置</div>
+  <div class="topnav">
+  	<a href="?" class="select"><u>常规设置</u></a>
+  	<a href="?action=sysconfig&operation=view&type=register"><u>注册与访问控制</u></a>
+    <a href="?action=sysconfig&operation=view&type=foot"><u>底部信息设置</u></a>
+    <a href="?action=links&operation=gettu"><u>首页图片轮换</u></a>
+  <div class="clear"></div>
+  </div>
+  <div class="clear"></div>
+</div>
+
+<form name="form1" method="post" action="?action=sysconfig&operation=save&type=website" enctype="multipart/form-data">  
+  <table border="0" cellspacing="1" cellpadding="3" class="stripe_tb">
+ 
+    <tr>
+      <td class="tdleft">站点名称</td>
+      <td><input type="text" name="s0" id="s0" class="input" value="{$s0}"> 站点名称，将显示在浏览器窗口标题等位置</td>
+    </tr>
+    <tr>
+      <td class="tdleft">网站域名</td>
+      <td><input type="text" name="s1" id="s1" class="input" value="{$s1}"> 不用加/</td>
+    </tr>
+        <tr>
+      <td class="tdleft">公司名称</td>
+      <td><input type="text" name="s2" id="s2" class="input" value="{$s2}"></td>
+    </tr>
+        <tr>
+      <td class="tdleft">电话</td>
+      <td><input type="text" name="s3" id="s3" class="input" value="{$s3}"></td>
+    </tr>
+    <tr>
+      <td class="tdleft">管理员邮箱</td>
+      <td><input type="text" name="s4" id="s4" class="input" value="{$s4}"></td>
+    </tr>
+
+    <tr>
+      <td class="tdleft">客服QQ</td>
+      <td><input type="text" name="s5" id="s5" class="input" value="{$s5}"> 多个QQ用半角逗号隔开</td>
+    </tr>
+    <tr>
+      <td class="tdleft">备案信息代码</td>
+      <td><input type="text" name="s6" id="s6" class="input" value="{$s6}"></td>
+    </tr>
+    <tr>
+      <td class="tdleft">第三方统计代码</td>
+      <td><textarea name="s7" rows="5" class="w250" style="width:450px;" id="s7">{$s7}</textarea></td>
+    </tr>
+     <tr>
+      <td class="tdleft">网站LOGO</td>
+      <td><img id="img_s8" src="{$s8}" width="90" /><br /><input type="hidden" name="s8" id="s8" class="input" value="{$s8}"><input name="myfile[]" type="file" onchange="up_check(this.form,'?action=sysconfig&operation=save&type=website','s8','','myfile')" />
+      
+      </td>
+    </tr>
+  </table>
+<iframe id="upload_frame" name="upload_frame" style='display:none;'></iframe>
+
+  <input id="Submit1" type="submit" value="保存" />
+</form>
+</div>
+</body>
+</html>

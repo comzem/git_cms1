@@ -1,0 +1,57 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>查看购物车</title>
+<script type="text/javascript" src="/js/jquery.js"></script>
+<script type="text/javascript" src="/js/cart.js"></script>
+<script type=text/javascript src="/js/lhgcore.lhgdialog.min.js?self=true&skin=default"></script>
+<link type="text/css" rel="stylesheet" href="{$domain}{$tpl}/css/style.css" />
+<link href="{$domain}{$tpl}/css/cart.css" rel="stylesheet"type="text/css" />
+</head>
+
+<body>
+{include file="{$path}header.htm"}
+<div class="bodyw">
+<!--  <table width="100%">
+    <tr>
+      <td><a href="{$domain}"><img src="{$domain}{$tpl}/images/logo.gif" alt="" /></a></td>
+      <td width="410" align="right"><div class="fabu_a">1. 我的购物车</div>
+        <div class="fabu_b">2. 确认订单信息</div>
+        <div class="fabu_b">3.成功提交订单</div>
+        <div class="clear"></div></td>
+    </tr>
+  </table>-->
+  <div id="cart_yes" {$d1}>
+    <table width="100%" border="0" cellspacing="2" cellpadding="5" class="cart_table">
+      <tr>
+        <td class="cart_td_2">订单号：<b>{$order_num}</b></td>
+        <td class="cart_td_1">单价(元)</td>
+        <td class="cart_td_1">数量</td>
+        <td class="cart_td_1">小计(元)</td>
+        <td class="cart_td_1">操作</td>
+      </tr>
+      {section name=order loop=$list}
+      <tr>
+        <td style="line-height:25px;"><img src="/upload/{$list[order].small_photo}" align="left" style="width:50px; height:50px; border:1px solid #d3d1cf; margin:5px; padding:1px;" />{$list[order].Prod_name}<br />{$list[order].property}
+          <input name="product_id" id="product_id_{$list[order].id}" type="hidden" value="{$list[order].id}" /></td>
+        <td id="prod_price1_{$list[order].id}" value="{$list[order].prod_price1}"> {$list[order].prod_price1}</td>
+        <td><img src="/images/minus.jpg" class="minus" id="{$list[order].id}" />
+          <input type="text" name="nums" id="nums_{$list[order].id}" style="width:25px;" class="input_1" disabled="disabled" value="{$list[order].product_num}" />
+          <img src="/images/plus.jpg" class="plus" id="{$list[order].id}" /></td>
+        <td style="color:#ff0000;" id="total_price_{$list[order].id}">{$list[order].total_price}</td>
+        <td><a href="javascript:;" id="{$list[order].id}" class="delete_order">删除</a></td>
+      </tr>
+      {sectionelse}	购物车没有商品...
+      {/section}
+    </table>
+    <div class="cart_fukuan">实付款：<span id="money" value="{$money}">{$money}</span></div>
+    <div class="cart_submit">
+      <input name="buy_order" id="buy_order" type="button" value="" />
+    </div>
+  </div>
+  <div id="cart_no_goods" {$d2}> <b>您的购物车还是空的，赶紧行动吧！您可以：</b> 马上去 <a href="/shop/search_product.php">随便逛逛</a> </div>
+</div>
+{include file="{$path}footer.htm"}
+</body>
+</html>

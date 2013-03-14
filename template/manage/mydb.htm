@@ -1,0 +1,87 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title></title>
+<link href="css/admincss.css" rel="stylesheet"type="text/css" />
+<link href="css/common.css" rel="stylesheet"type="text/css" />
+<script type="text/javascript" src="js/jquery.js"></script>
+<script type="text/javascript" src="js/Common.js"></script>
+<script type=text/javascript src="/js/lhgcore.lhgdialog.min.js?self=true&skin=default"></script>
+{literal}
+<script type="text/javascript">
+	$(function(){
+		$("#bak").click(function(){
+			/*$.dialog.confirm('你确定备份所选数据库表吗？', function(){
+				$.dialog.tips('数据备份中...');
+				$("#form1").submit();
+			}, function(){
+				$.dialog.tips('操作取消');
+			});*/
+			$.dialog.tips('数据备份中...',1000,'loading.gif');
+			$("#form1").submit();
+			setTimeout(function(){
+				$.dialog.tips('数据备份完毕',1,'tips.gif',function(){});
+			}, 5000 );
+		});
+	});
+</script>
+{/literal}
+</head>
+
+<body>
+<div class="mbody">
+<div class="pagetit">
+  <div class="ptit"> 数据库</div>
+  <div class="topnav"> <a href="?action=tools&operation=mydb" class="select"><u>备份</u></a> <a href="?action=tools&operation=restoreview" ><u>恢复</u></a> <a href="?action=tools&operation=mydb&t=optimize"><u>优化</u></a>
+    <div class="clear"></div>
+  </div>
+  <div class="clear"></div>
+</div>
+
+<div class="toptip">
+  <h2>提示：</h2>
+  <p> 数据备份功能根据您的选择备份网站数据库的数据，导出的数据文件可用“数据恢复”功能或 phpMyAdmin 导入。<br />
+    全部备份均不包含模板文件和附件文件。模板、附件的备份只需通过 FTP 等下载 ./templates, ./data 目录即可。 </p>
+</div>
+<div class="toptit">生成备份数据库</div>
+<form id="form1" name="form1" method="post" action="?action=tools&operation=bak">
+<table width="100%" border="0" cellspacing="0" cellpadding="4" id="backupshow">
+    <tr>
+      <td style=" line-height:180%; color:#666666; padding-left:20px;">
+
+<ul style="margin:0px; padding:3px;">
+    {section name=loop loop=$list}
+    
+        <li style=" list-style:none; padding:0px; margin:0px; float:left; width:260px; height:26px; display:block">
+         <label>
+          <input name="check_id[]" type="checkbox" style=" vertical-align: middle" value="{$list[loop].Name}" checked="checked"/> 
+         {$list[loop].Name}
+         </label>
+         </li>
+    
+    {sectionelse}
+    没有表...
+    {/section}
+    </ul>  
+    </td></tr>
+    <tr>
+      <td height="30" bgcolor="#F1F8FA" style=" line-height:180%; color:#666666; padding-left:20px;border-bottom:1px  #DFEDF7 solid;border-top:1px #DFEDF7 solid;">
+	  <input id="chkAll" name="chkAll" type="checkbox" checked="checked" />
+  &nbsp;&nbsp;&nbsp;
+	  分卷备份：
+          <input name="limit_size" type="text" id="limit_size"   value="1024" maxlength="20" onkeyup="if(event.keyCode !=37 && event.keyCode != 39) value=value.replace(/\D/g,'');"  onbeforepaste="clipboardData.setData('text',clipboardData.getData('text').replace(/\D/g,''))" class="input_text_100"/> KB&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+      建表语句格式:
+	   <label><input type="radio" name="mysql_type" value="" checked  style="vertical-align:middle"/>默认</label>	  </td>
+    </tr>
+	<tr>
+	  <td height="80" align="center"  ><input type="hidden" name="act" value="do_backup" />
+	   <input type="button" name="Submit22" id="bak" value="开始备份" class="admin_submit" />	  </td>
+	  </tr>
+  </table>
+
+  <div class="footer link_lan"> {$foot_msg} </div>
+</form>
+</div>
+</body>
+</html>

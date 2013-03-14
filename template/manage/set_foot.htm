@@ -1,0 +1,49 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>底部信息设置</title>
+<link href="css/admincss.css" rel="stylesheet"type="text/css" />
+<link href="css/common.css" rel="stylesheet"type="text/css" />
+<script type="text/javascript" src="js/jquery.js"></script>
+<script type="text/javascript" src="edito/xheditor-1.1.14-zh-cn.min.js"></script> 
+<script type="text/javascript" src="js/Common.js"></script>
+{literal}
+<script type="text/javascript">
+$(pageInit);
+var editor;
+function pageInit()
+{
+	editor=$('#f0').xheditor({skin:'nostyle',upLinkUrl:'/edito/demos/upload.php',upImgUrl:'/edito/demos/upload.php',upFlashUrl:'/edito/demos/upload.php',upMediaUrl:'/edito/demos/upload.php',localUrlTest:/^http?:\/\/[^\/]*?(localhost)\//i,remoteImgSaveUrl:'/editodemos/saveremoteimg.php'});
+}
+function submitForm(){$('#frmDemo').submit();}
+</script>
+{/literal}
+</head>
+
+<body>
+<div class="mbody">
+<div class="pagetit">
+  <div class="ptit">站点设置</div>
+  <div class="topnav">
+  	<a href="?action=sysconfig&operation=view&type=website"><u>常规设置</u></a>
+  	<a href="?action=sysconfig&operation=view&type=register"><u>注册与访问控制</u></a>
+    <a href="?action=sysconfig&operation=view&type=foot" class="select"><u>底部信息设置</u></a>
+    <a href="?action=links&operation=gettu"><u>首页图片轮换</u></a>
+  <div class="clear"></div>
+  </div>
+  <div class="clear"></div>
+</div>
+
+<form name="form1" method="post" action="admin.php?action=sysconfig&operation=save&type=foot">
+  <table border="0" cellspacing="1" cellpadding="3" class="stripe_tb">
+    <tr>
+      <td class="tdleft"><textarea id="f0" name="f0" rows="15" style="width: 800px;">{$f0}</textarea></td>
+      <td></td>
+    </tr>
+  </table>
+  <input id="Submit1" type="submit" value="保存" />
+</form>
+</div>
+</body>
+</html>

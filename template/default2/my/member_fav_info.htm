@@ -1,0 +1,64 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title></title>
+<link href="css/css.css" rel="stylesheet"type="text/css" />
+{literal}
+<script type="text/javascript">
+
+String.prototype.trim = function () { return this.replace(/(^\s*)|(\s*$)/g, ""); }
+
+</script>
+{/literal}
+
+</head>
+
+<body>
+<form id="form1" action="?act={$tab}" method="post" name="form1">
+<div class="all_list">
+<div class="list_out">添加</div>
+<div class="list_move"><a href='?act=list'>管理</a></div>
+</div>
+<table width="100%" border="0" align="center" cellpadding="0" cellspacing="0" class="table">
+<tr>
+<td align="right" class="navi_link">id：</td>
+<td align="left"><input type="text" name="txt_id" id="txt_id" class="stit" value='{$txt_id}' /> </td>
+</tr>
+<tr>
+<td align="right" class="navi_link">title：</td>
+<td align="left"><input type="text" name="txt_title" id="txt_title" class="stit" value='{$txt_title}' /> </td>
+</tr>
+<tr>
+<td align="right" class="navi_link">url：</td>
+<td align="left"><input type="text" name="txt_url" id="txt_url" class="stit" value='{$txt_url}' /> </td>
+</tr>
+<tr>
+<td align="right" class="navi_link">content：</td>
+<td align="left"><input type="text" name="txt_content" id="txt_content" class="stit" value='{$txt_content}' /> </td>
+</tr>
+<tr>
+<td align="right" class="navi_link">create_time：</td>
+<td align="left"><input type="text" name="txt_create_time" id="txt_create_time" class="stit" value='{$txt_create_time}' /> </td>
+</tr>
+<tr>
+<td align="right" class="navi_link">add_ip：</td>
+<td align="left"><input type="text" name="txt_add_ip" id="txt_add_ip" class="stit" value='{$txt_add_ip}' /> </td>
+</tr>
+<tr class="TR_BG_list">
+
+						<td align="right" class="navi_link">&nbsp;</td>
+
+						<td align="left">
+
+						   <input type="submit" name="button" id="button" value="提交" class="inputbg" />   
+                 
+						</td>
+
+						</tr>
+</table>
+
+
+</form>
+</body>
+</html>

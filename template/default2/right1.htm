@@ -1,0 +1,42 @@
+
+<div class="danye_left">
+  <div class="danye_help">
+    <div class="help_img"></div>
+    <div class="danye_list">
+      <h3>用户指南</h3>
+      <ul>
+        {section name=loop loop=$help_1}
+        <li><a href="/article/page.php?id={$help_1[loop].id}" title="{$help_1[loop].title}">{$help_1[loop].title}</a></li>
+        {/section}
+      </ul>
+      <h3>配送方式</h3>
+      <ul>
+        {section name=loop loop=$help_2}
+        <li><a href="/article/page.php?id={$help_2[loop].id}" title="{$help_2[loop].title}">{$help_2[loop].title}</a></li>
+        {/section}
+      </ul>
+      <h3>售后服务</h3>
+      <ul>
+        {section name=loop loop=$help_3}
+        <li><a href="/article/page.php?id={$help_3[loop].id}" title="{$help_3[loop].title}">{$help_3[loop].title}</a></li>
+        {/section}
+      </ul>
+      <h3>关于我们</h3>
+      <ul>
+        {section name=loop loop=$help_4}
+        <li><a href="/article/page.php?id={$help_4[loop].id}" title="{$help_4[loop].title}">{$help_4[loop].title}</a></li>
+        {/section}
+      </ul>
+    </div>
+  </div>
+  <div class="danye_help mat8">
+    <div class="guanyu_img"></div>
+    <div class="danye_list">
+      <ul>
+        {section name=sec1 loop=$a_class}
+        <li><a href="/article/list.php?fid={$a_class[sec1].fid}" title="{$a_class[sec1].title}">{$a_class[sec1].title}</a></li>
+        {/section}
+      </ul>
+    </div>
+  </div>
+</div>

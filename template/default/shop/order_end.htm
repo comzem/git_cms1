@@ -1,0 +1,190 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>付款</title>
+{literal}
+<style type="text/css">
+body{
+	width:980px;
+	margin:0px auto;
+	}
+ul {
+	margin: 0px;
+	padding: 0px;
+	list-style-type: none;
+}
+img{
+	border:0px;
+	}
+a{
+	color:#333;
+	text-decoration:none;
+	}
+a:hover{
+	color:#f00;
+	text-decoration:underline;
+	}
+.cartBor1 {
+	border: 1px solid #d5d5d5;
+	background-color: #f0f0f0;
+	width: 960px;
+}
+.cartBor2 {
+	border: 1px solid #cccccc;
+	background-color: #ffffff;
+	width: 938px;
+	margin: 0px auto;
+	margin-bottom:8px;
+}
+.TabCart {
+	background-color: #dddddd;
+}
+.TabCart th {
+	background: url(../images/tablethbg.gif) repeat-x bottom;
+	height: 30px;
+	line-height: 30px;
+}
+.TabCart tr {
+	background-color: #ffffff;
+}
+.check {
+	width: 938px;
+	margin: 8px auto;
+	background-color: #FFFFFF;
+}
+.cartL {
+	float: left;
+}
+.cartR {
+	float: right;
+}
+.check1 {
+	text-align: right;
+	width: 938px;
+	margin: 8px auto;
+	background-color: #FFFFFF;
+	color: #ff3300;
+	font-size: 14px;
+	height: 35px;
+	line-height: 35px;
+}
+.bfonts {
+	font-size: 14px;
+	padding-top: 10px;
+	padding-left: 10px;
+	padding-bottom: 10px;
+	display: block;
+}
+.TabCart1 tr td {
+	height: 25px;
+	line-height: 25px;
+}
+.cartTd {
+	text-align: right;
+	font-size: 14px;
+}
+.cartTd1 {
+	width: 250px;
+	text-align: left;
+	padding-left: 8px;
+	font-size: 14px;
+	background-color: #efefef;
+}
+.divpt {
+	line-height: 50px;
+	text-indent: 150px;
+	font-size: 14px;
+}
+.divpr {
+	line-height: 50px;
+	text-indent: 30px;
+	font-size: 14px;
+}
+.cartwidth span {
+	font-size: 16px;
+	color: Red;
+	font-weight: bold
+}
+.cartbank {
+	background-image: none
+}
+.banklist {
+	background-color: #EBF4FB;
+	width: 900px;
+	margin: auto;
+	margin-bottom:8px;
+	border: 1px blue solid;
+}
+.banklistq {
+	width: 100%;
+	margin: 0px;
+	padding: 0px
+}
+.banklistq li {
+	float: left;
+	width: 220px;
+	text-align: center;
+	margin-top: 20px;
+	line-height:25px;
+}
+.banktool {
+	width: 850px;
+	border: 1px #FF6600 solid;
+	background-color: #FFFCAA;
+	line-height: 25px;
+	font-size: 12px;
+	text-indent: 20px;
+	text-align: left;
+	margin: auto;
+	margin-top: 10px;
+	padding-left:8px;
+}
+</style>
+{/literal}
+</head>
+
+<body>
+<div class="cartBor1"> <b class="bfonts">订单号:{$order_num}</b>
+  <div class="cartBor2">
+    <div class="main">
+      <div class="cartwidth">
+        <div class="divpt">您的订单号：<span>{$order_num}</span> 应付金额：<span>{$price}</span>元    支付方式：<span>{$payment}</span></div>
+      </div>
+      <div class="cartwidth cartbank" id="tableqq">
+        <div class="divpr">还差一步，请立即支付(请您在7日内付清款项，否则订单会被自动取消)<a href="../passport/order.aspx" target="_blank">查看订单状态</a> <a href="#" target="_blank">查看银行限额帮助</a></div>
+        
+        
+        <div class="banklist">
+        
+            {if ($payment=="银行汇款" || $payment=="款到发货")}
+               <div class="banktool"> {$bankmsg}</div>
+            {else}
+          <div class="divpr">请选择以下支付平台支付：</div>
+          <ul class="banklistq">
+            <li id="alipays" runat="server"><a href="/shop/alipay/?order_num={$order_num}" target="_blank"><img src="/images/y_zfb.gif" /><br />
+              支付宝支付</a></li>
+            <!--<li id="chinabank" runat="server"><a href="#" target="_blank"><img src="/images/y_hxzf.gif" /><br />
+              网银在线支付</a></li>-->
+            <li id="chinabank" runat="server"><a href="/shop/tenpay/?order_num={$order_num}&price={$price}" target="_blank"><img src="/images/y_cft.gif" /><br />
+              财富通支付</a></li>
+          </ul>
+          <div style="clear:both"></div>
+          <div class="banktool"> 如何进行大额支付：<br />
+            1、如您订单金额较大，可以使用在线支付中的招行、工行、建行、农行、广发进行一次性大额支付（一万元以下）；<br />
+            2、如果您有支付宝，可将款项先充入相应账户内，然后使用账户余额进行一次性大额支付；<br />
+            3、直接进入“会员中心”-“在线支付”页面进行分次支付（财付通支持多次支付），支付时请输入相应订单号及支付金额。 </div>
+          {/if}
+            
+          <div class="divpr">完成支付后，您可以：<a href="/my/" target="_blank">查看订单状态</a> <a href="/shop/search_product.php" target="_blank">继续购物</a></div>
+          
+          
+        </div>
+        
+        
+      </div>
+    </div>
+  </div>
+</div>
+</body>
+</html>

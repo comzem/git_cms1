@@ -1,0 +1,81 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>系统设置</title>
+<link href="css/admincss.css" rel="stylesheet"type="text/css" />
+<link href="css/common.css" rel="stylesheet"type="text/css" />
+<script type="text/javascript" src="js/jquery.js"></script>
+<script type="text/javascript" src="js/Common.js"></script>
+</head>
+
+<body>
+<div class="mbody">
+<div class="pagetit">
+  <div class="ptit">系统设置</div>
+  <div class="topnav">
+    <a href="?action=sysconfig&operation=view&type=seo"><u>SEO设置</u></a>
+    <a href="?action=sysconfig&operation=view&type=display"><u>显示设置</u></a>
+    <a href="?action=sysconfig&operation=view&type=system" class="select"><u>系统设置</u></a>
+  <div class="clear"></div>
+  </div>
+  <div class="clear"></div>
+</div>
+
+<form name="form1" method="post" action="?action=sysconfig&operation=save&type=system">  
+  <table border="0" cellspacing="1" cellpadding="3" class="stripe_tb">
+    <tr>
+      <td colspan="2" class="tdleft"><b>私密信息存储策略</b></td>
+      </tr>
+    <tr>
+      <td class="tdleft"><select name="s0">{html_options options=$s0_options selected=$s0}</select></td>
+      <td>注意：修改此设置后，用户会被强制退出。默认：SESSION方案</td>
+    </tr>
+    <tr>
+      <td colspan="2" class="tdleft"><b>设置语言包</b></td>
+      </tr>
+    <tr>
+      <td class="tdleft"><select name="s1">{html_options options=$s1_options selected=$s1}</select></td>
+      <td>切换整站语言</td>
+    </tr>
+    <tr>
+      <td colspan="2" class="tdleft"><b>开启伪静态</b></td>
+      </tr>
+    <tr>
+      <td class="tdleft">{html_radios name="s2" class="mode" options=$s2_options checked=$s2 separator=" "}</td>
+      <td>&nbsp;</td>
+    </tr>
+    <tr>
+        <td colspan="2" class="tdleft"><b>关闭站点</b></td>
+      </tr>
+    <tr>
+      <td class="tdleft">{html_radios name="s3" options=$s3_options checked=$s3 separator=" "}</td>
+      <td>
+        
+        </td>
+    </tr>
+    <tr>
+      <td class="tdleft"><b>关闭站点的原因</b></td>
+      <td>&nbsp;</td>
+    </tr>
+    <tr>
+      <td class="tdleft"><textarea name="s4" rows="5" class="w250" id="s4">{$s4}</textarea></td>
+      <td>&nbsp;</td>
+    </tr>
+    <tr>
+        <td colspan="2" class="tdleft"><b>模式</b></td>
+      </tr>
+    <tr>
+      <td class="tdleft">{html_radios name="s5" options=$s5_options checked=$s5 separator=" "}</td>
+      <td>
+        
+        </td>
+    </tr>
+  </table>
+
+
+  <input id="Submit1" type="submit" value="保存" />
+</form>
+</div>
+</body>
+</html>

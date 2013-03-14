@@ -1,0 +1,141 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title></title>
+<link href="css/admincss.css" rel="stylesheet"type="text/css" />
+<script type="text/javascript" src="js/jquery.js"></script>
+<script language="javascript" src="js/Common.js" type="text/javascript"></script>
+<script type=text/javascript src="js/lhgcore.lhgdialog.min.js?self=true&skin=default"></script>
+{literal}
+<script type="text/javascript">
+$(function(){
+ 	var is_add=true;
+    $(".edit").click(function(){	  
+	  if (is_add){
+		is_add=false;
+	    var inval = $(this).html();
+	    var infd = $(this).attr("field");
+	    var inid = $(this).attr("id");
+		var url=$("#ajaxurl").val();
+		var size=$(this).attr("size");
+		$(this).html("<input id='edit"+infd+inid+"' value='"+inval+"' size='"+size+"'> ");
+		$("#edit"+infd+inid).focus().live("blur",function(){
+		    var editval = $(this).val();
+			//alert(inid+","+infd+","+editval);
+			$(this).parents("span").html(editval);
+			$.post("?action=product&operation=asy",{id:inid,fd:infd,val:editval},function(data){
+				
+			});
+			is_add=true;
+		});}
+	});	
+	
+	$(".showbox").click(function(){
+		var id=$(this).attr("id");
+		open_dg(id);
+	});
+	
+
+	
+	$("#search").click(function(){
+		var fid=$("#fid").val();
+		var title=$("#title").val();
+		var status=$("#status").val();
+		location.href="?action=product&operation=getlist&fid="+fid+"&title="+title+"&status="+status;
+	});
+});
+
+function open_dg(title,url)
+{
+	$.dialog({
+		title:title,
+		fixed: true,
+		width: 650, 
+    	height: 350,
+		min:false,
+		max:false,
+    	content: 'url:'+url
+	})
+}
+</script>
+{/literal}
+</head>
+
+<body>
+<div class="nav_bg1"><b>所有产品</b>
+<form id="form0" name="form0" style="display:inline">
+  <select name="fid" id="fid">
+      	{html_options options=$fid_options selected=$fid}
+  </select>
+  <select name="status" id="status">              
+      	<option value="">全部</option>
+        <option value="1">上架</option>
+        <option value="0">下架</option>
+  </select>
+
+  <input name="title" id="title" type="text" />
+  <input name="search" id="search" type="button" value="搜索" />
+  <a href="javascript:;" class="gaijia" s="cut" title="减价">[ - ]</a>
+        <input name="editprice" id="editprice" type="text" size="5" />
+        <a href="javascript:;" class="gaijia" s="add" title="加价">[ + ]</a>
+</form>
+&nbsp;&nbsp;<a href="javascript:;" onclick="open_dg('查看所有咨询','?action=product&operation=get_comments&fid=1')">所有咨询</a>    
+<a href="javascript:;" onclick="open_dg('查看所有评论','?action=product&operation=get_comments&fid=2')">所有评论</a>
+</div>
+<div class="tbbody">
+  <form id="form1" name="form1" method="post" action="{$tab}">
+  <input name="url" id="url" type="hidden" value="?action=product&operation=asy" />
+    <table border="0" cellspacing="0" cellpadding="3" class="table">
+      {section name=loop loop=$list}
+      <tr>
+        <td colspan="6" style="background-color:#edf5ff; border-top:1px solid #aed2ff; color:#666;">
+        <div style="float:left;">
+        商品编号：{$list[loop].bianma}
+        &nbsp;&nbsp;
+        状态({if $list[loop].status=="0"}
+      <img src="images/no.gif" class="editp" id="{$list[loop].pid}" field="status" val="1" title="已下架" />
+      {else if $list[loop].status=="1"} 
+      <img src="images/yes.gif" class="editp" id="{$list[loop].pid}" field="status" val="0" title="正常" />
+       {/if})
+       &nbsp;&nbsp;推荐({if $list[loop].istop=="0"}
+      <img src="images/no.gif" class="editp" id="{$list[loop].pid}" field="istop" val="1" title="正常" />
+      {else if $list[loop].istop=="1"} 
+      <img src="images/yes.gif" class="editp" id="{$list[loop].pid}" field="istop" val="0" title="推荐" />
+       {/if})
+       </div>
+       <div style="float:right;">
+       <a href="javascript:;" onclick="open_dg('{$list[loop].title}','?action=product&operation=get_comments&fid=1&pid={$list[loop].pid}')">咨询(<span id="{$list[loop].pid}" class="zx_total">0</span>)</a>  
+       <a href="javascript:;" onclick="open_dg('{$list[loop].title}','?action=product&operation=get_comments&fid=2&pid={$list[loop].pid}')">评论(<span id="{$list[loop].pid}" class="pl_total">0</span>)</a>
+       </div>
+        </td>
+      </tr>
+      <tr onmouseover="c=this.style.backgroundColor;this.style.backgroundColor='#f4f4f4';" onmouseout="this.style.backgroundColor=c;">
+        <td style="width:30px;"><input type="checkbox" name="check_id[]" id="gcheck" value='{$list[loop].pid}'></td>
+        <td style=" line-height:22px;"><img src="/upload/{$list[loop].photo}" style="width:52px; height:52px; padding:3px; margin-right:5px; border:1px solid #ccc;" align="left" /> <span style="color:#0579c6;">{$list[loop].title}</span> <br />
+          {$list[loop].fid} </td>
+        <td style="color:#F60; font-weight:bold; width:100px;font-size:16px;">￥ <span class="edit" id="{$list[loop].pid}" size="5" field="price1">{$list[loop].price1}</span></td>
+        <td style="width:100px;"><span size="3" class="edit" id="{$list[loop].pid}" field="amount">{$list[loop].amount}</span>件</td>
+        <td>{$list[loop].add_time|date_format:"%Y-%m-%d %H:%M:%S"}</td>
+        <td>       
+        <a href="?action=product&operation=view&id={$list[loop].pid}"> <img src="/images/admin/gtk-edit.png" /> </a></td>
+      </tr>
+      {sectionelse}
+      没有数据...
+      {/section}
+    </table>
+    <div style="height:35px;"></div>
+    <table style="width:99%;" cellspacing="0" cellpadding="3" id="ToolBar">
+      <tr>
+        <td align="left" style="width:50px;"><input id="chkAll" type="checkbox" />
+        删?</td>
+        <td style="width:50px;"><input type="submit" value="提交" name="Button1" /></td>
+        <td class="fenye"> {$paging}</td>
+        <td align="right">
+        &nbsp;&nbsp;{$footmsg}</td>
+      </tr>
+    </table>
+  </form>
+</div>
+</body>
+</html>

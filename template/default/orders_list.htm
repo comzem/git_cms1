@@ -1,0 +1,58 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>会员中心</title>
+<meta name="keywords" content="{$keywords}">
+<link type="text/css" rel="stylesheet" href="{$tpl}/css/style.css" />
+<link href="{$tpl}/css/userhead.css" rel="stylesheet"type="text/css" />
+<link href="{$tpl}/css/my.css" rel="stylesheet"type="text/css" />
+<script type="text/javascript" src="../js/jquery.js"></script>
+<script type="text/javascript" src="../js/detail.js"></script>
+<script type="text/javascript" src="../js/user.js"></script>
+</head>
+<body>
+{include file="{$path}header.htm"}
+<div class="content">
+  <div class="bor1">
+    <table width="100%" border="0" cellspacing="0" cellpadding="0">
+      <tr>
+        <td class="left" valign="top">
+        
+        {include file="{$path}my/menu.htm"}
+        
+        </td>
+        <td class="right" valign="top">
+        
+        <div class="all_list">
+            <div class="list_out">订单管理</div>
+          </div>
+          <table width="100%" border="0" cellspacing="0" cellpadding="3" class="table">
+            {section name=loop loop=$list}
+            <tr>
+              <td colspan="8" class="f3f3">订单编号：{$list[loop].order_num} &nbsp;&nbsp;下单时间：{$list[loop].time1|date_format:"%Y-%m-%d %H:%M:%S"}</td>
+            </tr>
+            <tr>
+              <td>{$list[loop].pay_ment}</td>
+              <td>{$list[loop].total_money}</td>
+              <td>{$list[loop].user_name}</td>
+              <td>手机：{$list[loop].user_mobile}<br />
+                电话：{$list[loop].user_tel}</td>
+              <td><a href="?action=orders&operation=view&id={$list[loop].order_num}">查看详情</a></td>
+            </tr>
+            {sectionelse}
+            没有数据...
+            {/section}
+            <tr>
+              <td colspan="10"> {$paging}</td>
+            </tr>
+          </table>
+          
+          </td>
+      </tr>
+    </table>
+  </div>
+</div>
+{include file="{$path}my/myfooter.htm"}
+</body>
+</html>

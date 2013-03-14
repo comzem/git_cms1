@@ -1,0 +1,111 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title></title>
+<link href="css/admincss.css" rel="stylesheet"type="text/css" />
+<link href="css/common.css" rel="stylesheet"type="text/css" />
+<script type="text/javascript" src="js/jquery.js"></script>
+<script type="text/javascript" src="js/Common.js"></script>
+{literal}
+<script>
+var i=0;
+$(function(){	
+	
+	$("#addc").live("click",function(){
+		var act=$("#form1").attr("action");
+	var t="<tr><td> </td><td><input name='sort[]' class='childid3' size='3' type='text' /></td><td><input name='title[]' class='childid3' type='text' /></td><td><input name='url[]' type=\"text\" size='28' /></td><td><input name='attach[]' id='attach"+i+"' type=\"hidden\" size='28' /><input type=\"file\" name=\"myfile"+i+"[]\" id=\"myfile"+i+"\" onchange=\"up_check(this.form,'"+act+"','attach"+i+"','myfile"+i+"','')\" />&nbsp;&nbsp;<a href='javascript:;' class='close1'>[ - ]</a></td></tr>";
+		$("#tbody").append(t);
+		i++;
+	})
+	
+	$(".close1").live("click",function(){
+		$(this).parent().parent().remove();
+	})
+	
+	$("#chkAll,.gcheck").change(function(){
+		if ($(this).attr("checked")){
+			$("#form1").attr("action","?action=links&operation=deletetu");
+		}else{
+			$("#form1").attr("action","?action=links&operation=savetu");
+		}
+	});
+	
+	
+});
+function up_check(form,tab,hide,filename,fname)
+{
+	//alert(tab+hide+path);
+	form.action="/inc/upload.php?tt=0&hide="+hide+"&filename="+filename+"&fname="+fname;
+	//alert("../Common/upload.php?hide="+hide+"&path="+path+"&filename="+filename);
+	form.target="upload_frame";
+	form.submit();
+	form.action=tab;form.target="_self";
+}
+function say(t,s) {	
+	//alert(s);
+	if (t+"a"!="a")
+	{
+		$("#"+s).val(t);		
+	}
+}
+</script>
+{/literal}
+</head>
+
+<body>
+<div class="mbody">
+<div class="pagetit">
+  <div class="ptit">站点设置</div>
+  <div class="topnav">
+  	<a href="?action=sysconfig&operation=view&type=website"><u>常规设置</u></a>
+  	<a href="?action=sysconfig&operation=view&type=register"><u>注册与访问控制</u></a>
+    <a href="?action=sysconfig&operation=view&type=foot"><u>底部信息设置</u></a>
+    <a href="?action=links&operation=gettu" class="select"><u>首页图片轮换</u></a>
+  <div class="clear"></div>
+  </div>
+  <div class="clear"></div>
+</div>
+
+<form id="form1" name="form1" method="post" action="{$tab}" enctype="multipart/form-data">
+  <table width="100%" border="0" cellspacing="0" cellpadding="0" class="table">
+  <tbody id="tbody">
+    <tr class="nav_tit">
+      <th style="width:30px;"></th>
+      <th style="width:10%;">显示顺序</th>
+      <th style="width:20%;">标题</th>
+      <th style="width:20%;">链接</th>
+      <th>图片</th>
+    </tr>
+    {section name=loop loop=$list}
+    <tr id="{$list[loop].id}" onmouseover="c=this.style.backgroundColor;this.style.backgroundColor='#f4f4f4';" onmouseout="this.style.backgroundColor=c;">
+      <td><input type="checkbox" name="check_id[]" id="gcheck" class="gcheck" value='{$list[loop].id}|{$list[loop].attach}'></td>
+      <td class="edit" field="sort">{$list[loop].sort}</td>
+      <td class="edit" field="sitename">{$list[loop].title}</td>
+      <td class="edit" field="url">{$list[loop].url}</td>
+      <td class="edit" field="logo">{$list[loop].attach}</td>
+    </tr>
+    {/section}
+
+    </tbody>
+  </table>
+  <table width="100%" border="0" cellspacing="0" cellpadding="3" class="table">
+      <tr>
+      <td colspan="6">
+      <a href="javascript:;" id="addc">
+        <img src="images/add_1.gif" border="0" />&nbsp;&nbsp;添加
+      </a>
+      </td>
+    </tr>
+    <tr>
+      <td colspan="12"><input id="chkAll" type="checkbox" />删? 
+      <input type="submit" value="提交" name="Button1" onclick="" />
+        </td>
+    </tr>
+    </tbody>
+  </table>
+</form>
+<iframe id="upload_frame" name="upload_frame" style='display:none;'></iframe>
+</div>
+</body>
+</html>

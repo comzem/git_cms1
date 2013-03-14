@@ -1,0 +1,28 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>{$title}{$seotitle}{$webname}</title>
+<meta name="keywords" content="{$title},{$keywords}" />
+<meta name="description" content="{$description}" />
+<link type="text/css" rel="stylesheet" href="{$domain}{$tpl}/css/all.css" />
+<link type="text/css" rel="stylesheet" href="{$domain}{$tpl}/css/style.css" />
+<script type="text/javascript" src="/js/jquery.js"></script>
+</head>
+
+<body>
+{include file="{$path}header.htm"}
+<div class="content">
+  <div class="width960" style="background:#fff;">
+    {include file="{$path}right1.htm"}
+    <div class="danye_right">
+      <h3 class="cred">{$title}</h3>
+      <div class="danye_main"> {$content} </div>
+    </div>
+  </div>
+</div>
+﻿
+<div class="clear"></div>
+{include file="{$path}footer.htm"}
+</body>
+</html>

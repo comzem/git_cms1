@@ -1,0 +1,110 @@
+@charset "utf-8";
+body{
+	margin:0px auto;
+	font-size:12px;
+	}
+.bodyw{
+	width:980px;
+	margin:0px auto;
+	}
+a{
+	color:#3366cc;
+	text-decoration:none;
+	}
+a:hover{
+	color:#3366cc;
+	text-decoration:underline;
+	}
+.table{
+	width:950px;
+	margin:10px auto;
+}
+.table td{
+	line-height:28px;
+	padding:3px;
+}
+.input_left{
+	float:left
+}
+.js_left{
+	color:#ff0000;
+	background:url(../../images/UpgradeReport_Warning.png) no-repeat 10px center;
+	padding-left:28px;
+}
+.js_left1{
+	height:25px;
+	line-height:25px;
+	background:url(../../images/UpgradeReport_Success.png) no-repeat 10px center;
+}
+.stit{
+	border:1px solid #ccc;
+	height:25px;
+	line-height:25px;
+	width:260px;
+	}
+.input1{
+	width:60px;
+	border:1px solid #ccc;
+	height:25px;
+	line-height:25px;
+	}
+.zuche{
+	background:url(../../images/user/reg.jpg) no-repeat;
+	width:119px;
+	height:37px;
+	border:0px;
+	cursor:pointer;
+	}
+.fabu_a{
+	background:#ffe6bc url(../../images/post/progress_bg.png) no-repeat right -25px;
+	height:25px;
+	line-height:25px;
+	float:left;
+	padding-left:15px;
+	padding-right:35px;
+	color:#ff6600;
+	font-weight:bold;
+	margin-top:8px;
+	}
+.fabu_b{
+	background:#f1f1f1 url(../../images/post/progress_bg.png) no-repeat right 1px;
+	height:25px;
+	line-height:25px;
+	float:left;
+	padding-left:15px;
+	padding-right:35px;
+	color:#999999;
+	font-weight:bold;
+	margin-top:8px;
+	}
+.fabu_c{
+	background:#f1f1f1;
+	height:25px;
+	line-height:25px;
+	float:left;
+	padding-left:15px;
+	padding-right:25px;
+	color:#999999;
+	font-weight:bold;
+	margin-top:8px;
+	}
+	
+.foot{
+	width:980px;
+	margin:0px auto;
+	text-align:center;
+	line-height:25px;
+	}
+	
+	
+.reg_nav{
+	background:url(../../images/user/reg_nav.jpg) repeat-x bottom;
+	height:31px;
+	line-height:31px;
+	text-indent:15px;
+	font-size:14px;
+	font-weight:bold;
+	}
+.reg_bor{
+	border:1px solid #eae9e9;
+	}

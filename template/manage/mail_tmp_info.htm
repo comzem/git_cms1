@@ -1,0 +1,51 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>修改邮件模板</title>
+<link href="css/admincss.css" rel="stylesheet"type="text/css" />
+<link href="css/common.css" rel="stylesheet"type="text/css" />
+<script type="text/javascript" src="js/jquery.js"></script>
+<script type="text/javascript" src="edito/xheditor-1.1.14-zh-cn.min.js"></script>
+<script type="text/javascript" src="js/Common.js"></script>
+{literal}
+<script type="text/javascript">
+$(pageInit);
+var editor;
+function pageInit()
+{
+	editor=$('#svalue').xheditor({skin:'nostyle'});
+}
+</script>
+{/literal}
+</head>
+
+<body>
+<form id="form1" action="{$tab}" method="post" name="form1">
+<table width="100%" border="0" align="center" cellpadding="0" cellspacing="0" class="table1" style="margin-top:8px;">
+
+          <tr>
+            <td align="right" style="width:75px;"><span>*</span>邮件标题：</td>
+            <td align="left">
+            <input type="text" name="stitle" id="stitle" class="stit" value='{$stitle}' />
+              
+              </td>
+          </tr>
+
+          <tr>
+            <td align="right"><span>*</span>邮件内容：</td>
+            <td align="left"><textarea id="svalue" name="svalue" rows="18" class="xheditor-simple" style="width: 550px;">{$svalue}</textarea>
+			</td>
+          </tr>
+          <tr>
+            <td align="right">标签：</td>
+            <td>&nbsp;</td>
+    </tr>
+          <tr>
+            <td></td>
+            <td><input type="submit" name="button" id="button" value="提交" class="admin_submit" /></td>
+          </tr>
+        </table>
+</form>
+</body>
+</html>

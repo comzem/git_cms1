@@ -1,0 +1,103 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title></title>
+<link href="css/admincss.css" rel="stylesheet"type="text/css" />
+<link href="css/common.css" rel="stylesheet"type="text/css" />
+<script type="text/javascript" src="js/jquery.js"></script>
+<script type="text/javascript" src="../edito/xheditor-1.1.14-zh-cn.min.js"></script>
+<script type="text/javascript" src="js/Common.js"></script>
+{literal}
+<script type="text/javascript">
+$(pageInit);
+var editor;
+function pageInit()
+{
+	editor=$('#content').xheditor({skin:'nostyle',upLinkUrl:'/edito/upload.php',upImgUrl:'/edito/upload.php?type=single',upFlashUrl:'/edito/upload.php',upMediaUrl:'/edito/upload.php',localUrlTest:/^http?:\/\/[^\/]*?(localhost)\//i,remoteImgSaveUrl:'/edito/saveremoteimg.php?type=single'});
+}
+
+String.prototype.trim = function () { return this.replace(/(^\s*)|(\s*$)/g, ""); }
+
+function verify_art_title() {
+	var input_msg=document.getElementById("art_title_msg");
+	if (document.getElementById("txt_art_title").value.trim() == "") {
+		input_msg.className = "js_left";
+		input_msg.innerHTML = "不能为空";
+		return false;
+	}else {
+		input_msg.className = "js_left1";
+		input_msg.innerHTML = "";
+		return true;
+	}
+}
+
+function verify_classid() {
+	var input_msg=document.getElementById("classid_msg");
+	if ($("txt_classid").val().trim() == "" || $("v_txt_classId").val().trim() == "") {
+		input_msg.className = "js_left";
+		input_msg.innerHTML = "输入不正确";
+		return false;
+	}else {
+		input_msg.className = "js_left1";
+		input_msg.innerHTML = "";
+		return true;
+	}
+}
+function Result()
+{
+   if (verify_art_title() && verify_classid())
+   {
+	return true;
+   }
+   else
+   {
+	alert("您的资料填写错误");
+	return false;
+   }
+}
+</script>
+{/literal}
+</head>
+
+<body>
+<form id="form1" action="{$tab}" method="post" name="form1">
+
+  <table width="100%" border="0" align="center" cellpadding="0" cellspacing="0" class="table">
+    <tr>
+      <td align="right" class="navi_link">标题：</td>
+      <td align="left"><div class="input_left">
+          <input type="text" name="title" id="title" class="stit" value='{$title}' onblur="return verify_art_title()" />
+        </div>
+        <div id="art_title_msg"></div></td>
+    </tr>
+    <tr>
+      <td align="right" class="navi_link">栏目：</td>
+      <td align="left"><select name="fid" id="fid">
+      	{html_options options=$fid_options selected=$fid}      
+      </select></td>
+    </tr>
+    <tr>
+      <td align="right" class="navi_link">内容：</td>
+      <td align="left"><textarea id="content" name="content" rows="25" style="width: 800px;">{$content}</textarea></td>
+    </tr>
+    <tr>
+      <td align="right" class="navi_link">SEO标题：</td>
+      <td align="left"><input type="text" name="seotitle" id="seotitle" class="stit" value='{$seotitle}' /></td>
+    </tr>
+    <tr>
+      <td align="right" class="navi_link">SEO关键字：</td>
+      <td align="left"><input type="text" name="keywords" id="keywords" class="stit" value='{$keywords}' /></td>
+    </tr>
+    <tr>
+      <td align="right" class="navi_link">SEO描述：</td>
+      <td align="left"><input type="text" name="description" id="description" class="stit" value='{$description}' /></td>
+    </tr>
+    <tr class="TR_BG_list">
+      <td align="right" class="navi_link">&nbsp;</td>
+      <td align="left"><input type="submit" name="button" id="button" value="提交" class="admin_submit" onclick="return Result()" /></td>
+    </tr>
+  </table>
+</form>
+</body>
+</html>

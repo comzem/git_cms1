@@ -1,0 +1,10 @@
+{literal}
+<script>
+	$(function(){
+		$("#cnum").load("/inc/ajax.php?t=cnum&tm="+(new Date).getTime());
+	})
+</script>
+{/literal}
+<div class="quick_menu">
+  <p> 您好，<span class="cred">{$username}</span>! 欢迎来到{$webname}！ <a href="/my/" title="会员中心">会员中心</a> <a href="/shop/order/cart.php" title="购物车">购物车 <span class="cred" id="cnum">0</span> 件</a> <a href="/inc/ajax.php?t=logout" title="退出" style="border:0">退出</a> </p>
+</div>

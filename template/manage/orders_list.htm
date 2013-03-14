@@ -1,0 +1,54 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title></title>
+<link href="css/admincss.css" rel="stylesheet"type="text/css" />
+<script type="text/javascript" src="js/jquery.js"></script>
+<script language="javascript" src="js/Common.js" type="text/javascript"></script>
+</head>
+
+<body>
+<div class="nav_bg1">订单管理</div>
+<div class="tbbody">
+<form id="form1" name="form1" method="post" action="{$tab}">
+  <table width="100%" border="0" cellspacing="0" cellpadding="3" class="table">
+    <tr class="nav_tit">
+      <th style="width:30px;"><input id="chkAll" type="checkbox" /></th>
+      <th>订单号</th>
+      <th>下单会员</th>
+      <th>付款方式</th>
+      <th>下单时间</th>
+      <th>总金额</th>
+      <th>收货人姓名</th>
+      <th>联系方式</th>
+      <th>操作</th>
+    </tr>
+    {section name=loop loop=$list}
+    <tr onmouseover="c=this.style.backgroundColor;this.style.backgroundColor='#f4f4f4';" onmouseout="this.style.backgroundColor=c;">
+      <td style="text-align:center;"><input type="checkbox" name="check_id[]" id="gcheck" value='{$list[loop].order_num}'></td>
+      <td>{$list[loop].order_num}</td>
+      <td>{$list[loop].uid}</td>
+      <td>{$list[loop].pay_ment}</td>
+      <td>{$list[loop].time1}</td>
+      <td>{$list[loop].total_money}</td>
+      <td>{$list[loop].user_name}</td>
+      <td>手机：{$list[loop].user_mobile}<br />
+        电话：{$list[loop].user_tel}</td>
+      <td><a href="?action=orders&operation=view&oid={$list[loop].id}&id={$list[loop].order_num}">查看详情</a></td>
+    </tr>
+    {sectionelse}
+    没有数据...
+    {/section}
+    <tr>
+      <td colspan="10">
+      {literal}
+      <input type="submit" value="删除" name="Button1" onclick="if (confirm('确定删除吗?')){return true;}return false;" />
+      {/literal}
+        {$paging}</td>
+    </tr>
+  </table>
+</form>
+</div>
+</body>
+</html>

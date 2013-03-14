@@ -1,0 +1,57 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>邮件模板</title>
+<link href="css/admincss.css" rel="stylesheet"type="text/css" />
+<link href="css/common.css" rel="stylesheet"type="text/css" />
+<script type="text/javascript" src="js/jquery.js"></script>
+<script type="text/javascript" src="js/Common.js"></script>
+<script type=text/javascript src="js/lhgcore.lhgdialog.min.js?self=true&skin=default"></script>
+{literal}
+<script type="text/javascript">
+$(function(){
+	$(".edit").click(function(){
+		var id=$(this).attr("id");
+		open_dg("编辑邮件模板","?action=tools&operation=mailview&id="+id);
+	});
+});
+function open_dg(title,url)
+{
+	$.dialog({
+		title:title,
+		fixed: true,
+		width: 650, 
+    	height: 400,
+		min:false,
+		max:false,
+    	content: 'url:'+url
+	})
+}
+</script>
+{/literal}
+</head>
+
+<body>
+<div class="mbody">
+<div class="pagetit">
+  <div class="ptit">邮件设置</div>
+  <div class="topnav">
+    <a href="?action=sysconfig&operation=view&type=email"><u>邮件信息</u></a>
+    <a href="?action=tools&operation=mailtmp" class="select"><u>邮件模板</u></a>
+  <div class="clear"></div>
+  </div>
+  <div class="clear"></div>
+</div>
+<div class="toptit">邮件模板</div>
+<table border="0" align="left" cellpadding="4" cellspacing="0" id="backupshow">
+{section name=loop loop=$list}
+    <tr>
+    <td align="left">{$list[loop].skey}</td>
+    <td align="left"><a href="javascript:;" id="{$list[loop].id}" class="edit">[编辑]</a></td>
+    </tr>
+{/section}
+</table>
+</div>
+</body>
+</html>

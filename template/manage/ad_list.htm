@@ -1,0 +1,61 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title></title>
+<link href="css/admincss.css" rel="stylesheet"type="text/css" />
+<link href="css/common.css" rel="stylesheet"type="text/css" />
+<script type="text/javascript" src="js/jquery.js"></script>
+<script type="text/javascript" src="js/Common.js"></script>
+
+</head>
+
+<body>
+<div class="mbody">
+<div class="pagetit">
+  <div class="ptit">广告管理</div>
+  <div class="topnav">
+  	<a href="?action=links&operation=getad" class="select"><u>管理广告</u></a>
+  	<a href="?action=links&operation=adview"><u>添加广告</u></a>
+  <div class="clear"></div>
+  </div>
+  <div class="clear"></div>
+</div>
+
+<form id="form1" name="form1" method="post" action="{$tab}">
+  <table width="100%" border="0" cellspacing="0" cellpadding="0" class="table">
+    <tr class="nav_tit">
+      <th style="width:30px;"></th>
+      <th>广告标题</th>
+      <th>所属广告位</th>
+      <th>类型</th>
+      <th>开始时间</th>
+      <th>到期时间</th>
+      <th>状态</th>
+      <th>排序</th>
+      <th>操作</th>
+    </tr>
+    {section name=loop loop=$list}
+    <tr onmouseover="c=this.style.backgroundColor;this.style.backgroundColor='#f4f4f4';" onmouseout="this.style.backgroundColor=c;">
+      <td><input type="checkbox" name="check_id[]" id="gcheck" value='{$list[loop].id}'></td>
+      <td>{$list[loop].title}</td>
+      <td>{$list[loop].fid}</td>
+      <td>{$list[loop].ad_type}</td>
+      <td>{$list[loop].start_time}</td>
+      <td>{$list[loop].end_time}</td>
+      <td>{$list[loop].closed}</td>
+      <td>{$list[loop].sort}</td>
+      <td>
+      <a href="{$list[loop].id}">修改</a> 
+      <a href="#">删除</a></td>
+    </tr>
+    {/section}
+    <tr>
+    	<td><input id="chkAll" type="checkbox" /></td>
+      <td colspan="8"><input type="submit" value="删除" name="Button1" onclick="return del_check(this.form,'other_ad.php')" />
+        {$paging}</td>
+    </tr>
+  </table>
+</form>
+</body>
+</html>

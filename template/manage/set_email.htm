@@ -1,0 +1,86 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>邮件设置</title>
+<link href="css/admincss.css" rel="stylesheet"type="text/css" />
+<link href="css/common.css" rel="stylesheet"type="text/css" />
+<script type="text/javascript" src="js/jquery.js"></script>
+<script type="text/javascript" src="js/Common.js"></script>
+</head>
+
+<body>
+<div class="mbody">
+<div class="pagetit">
+  <div class="ptit">邮件设置</div>
+  <div class="topnav">
+    <a href="?action=sysconfig&operation=view&type=email" class="select"><u>邮件信息</u></a>
+    <a href="?action=tools&operation=mailtmp"><u>邮件模板</u></a>
+  <div class="clear"></div>
+  </div>
+  <div class="clear"></div>
+</div>
+
+<form name="form1" method="post" action="admin.php?action=sysconfig&operation=save&type=email">
+  
+  <table border="0" cellspacing="1" cellpadding="3" class="stripe_tb">
+    <tr>
+      <td colspan="2" class="tdleft"><b>发送Email方式</b></td>
+      </tr>
+          <tr>
+      <td class="tdleft">{html_radios name="e0" options=$e0_options checked=$e0 separator=" "}</td>
+      <td>
+        
+        </td>
+    </tr>
+        <tr>
+      <td colspan="2" class="tdleft"><b>发送邮件的地址</b></td>
+      </tr>
+    <tr>
+      <td class="tdleft"><input type="text" name="e1" id="e1" class="input" value="{$e1}"></td>
+      <td>* 发送邮件所使用的email地址，邮件内容中的收件人信息就是显示此信息</td>
+    </tr>
+    <tr>
+      <td colspan="2" class="tdleft"><b>SMTP地址</b></td>
+      </tr>
+    <tr>
+      <td class="tdleft"><input type="text" name="e2" id="e2" class="input" value="{$e2}"></td>
+      <td>第三方的SMTP的URL地址</td>
+    </tr>
+    <tr>
+      <td colspan="2" class="tdleft"><b>用户名</b></td>
+      </tr>
+    <tr>
+      <td class="tdleft"><input type="text" name="e3" id="e3" class="input" value="{$e3}"></td>
+      <td>SMTP用户名</td>
+    </tr>
+    <tr>
+      <td colspan="2" class="tdleft"><b>密码</b></td>
+      </tr>
+    <tr>
+      <td class="tdleft"><input type="text" name="e4" id="e4" class="input" value="{$e4}"></td>
+      <td>SMTP密码</td>
+    </tr>
+        <tr>
+      <td colspan="2" class="tdleft"><b>端口号</b></td>
+      </tr>
+    <tr>
+      <td class="tdleft"><input type="text" name="e5" id="e5" class="input" value="{$e5}"></td>
+      <td>SMTP端口号(默认：25)</td>
+    </tr>
+
+
+    <tr>
+      <td class="tdleft"><b>测试邮件地址</b></td>
+      <td>&nbsp;</td>
+    </tr>
+    <tr>
+      <td class="tdleft"><input type="text" name="e6" id="e6" class="input" value="{$e6}"></td>
+      <td>用于测试邮件发送的功能【可选】</td>
+    </tr>
+  </table>
+  <input id="Submit1" type="submit" value="保存" />
+</form>
+</div>
+</body>
+</html>

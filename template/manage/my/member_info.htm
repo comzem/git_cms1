@@ -1,0 +1,160 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title></title>
+<link href="css/admincss.css" rel="stylesheet"type="text/css" />
+<link href="css/common.css" rel="stylesheet"type="text/css" />
+<script type="text/javascript" src="js/jquery.js"></script>
+<script type="text/javascript" src="/js/cart.js"></script>
+<script type="text/javascript" src="/js/common.js"></script>
+<script type="text/javascript" src="/DatePicker/WdatePicker.js"></script>
+{literal}
+<script type="text/javascript">
+
+String.prototype.trim = function () { return this.replace(/(^\s*)|(\s*$)/g, ""); }
+
+function verify_user_name() {
+	var input_msg=document.getElementById("user_name_msg");
+	if (document.getElementById("username").value.trim() == "") {
+		input_msg.className = "js_left";
+		input_msg.innerHTML = "请输入用户名";
+		return false;
+	}else {
+		input_msg.className = "js_left1";
+		input_msg.innerHTML = "";
+		return true;
+	}
+}
+
+function verify_pw(){
+}
+
+
+function verify_email() {
+	var email = /^([a-zA-Z0-9]+[_|\_|\.]?)*[a-zA-Z0-9]+@([a-zA-Z0-9]+[_|\_|\.]?)*[a-zA-Z0-9]+\.[a-zA-Z]{2,3}$/;
+
+	var input_msg=document.getElementById("email_msg");
+	if (!email.test(document.getElementById("txt_email").value)) {
+		input_msg.className = "js_left";
+		input_msg.innerHTML = "输入不正确";
+		return false;
+	}
+	else {
+		input_msg.className = "js_left1";
+		input_msg.innerHTML = "";
+		return true;
+	}            
+}
+
+
+function Result(){
+   if (verify_user_name() && verify_email()){
+	 return true;
+   }
+   else{
+	 alert("您的资料填写错误");
+	 return false;
+   }
+}
+</script>
+{/literal}
+</head>
+
+<body>
+<div class="mbody">
+<div class="nav_bg"><b>添加会员</b></div>
+<form id="form1" action="{$tab}" method="post" name="form1">
+  <table width="100%" border="0" align="center" cellpadding="0" cellspacing="0" class="table">
+    <tr>
+      <td align="right" class="navi_link">用户组：</td>
+      <td align="left">
+      <select name="gid">{html_options options=$gid_options selected=$gid}</select>
+      </td>
+    </tr>
+    <tr>
+      <td align="right" class="navi_link">*帐号：</td>
+      <td align="left">
+      <div class="input_left">
+      <input type="text" name="username" id="username" class="stit" value='{$username}' onblur="return verify_user_name()" />
+        </div>
+        <div id="user_name_msg"></div>
+      </td>
+    </tr>
+    <tr>
+      <td align="right" class="navi_link"> 昵称：</td>
+      <td align="left">
+          <input type="text" name="nickname" id="nickname" class="stit" value='{$nickname}' onblur="return verify_nick_name()" /></td>
+    </tr>
+    <tr>
+      <td align="right" class="navi_link">密码：</td>
+      <td align="left"><input type="text" name="password" id="password" class="stit" value='{$password}' /></td>
+    </tr>
+    <tr>
+      <td align="right" class="navi_link">* Email：</td>
+      <td align="left"><div class="input_left">
+          <input type="text" name="email" id="email" class="stit" value='{$email}' onblur="return verify_email()" />
+        </div>
+        <div id="email_msg"></div></td>
+    </tr>
+
+  </table>
+  <div class="nav_bg">选填</div>
+  <table width="100%" border="0" align="center" cellpadding="0" cellspacing="0" class="table">
+    <tr>
+      <td align="right" class="navi_link">姓名：</td>
+      <td align="left">
+        <input type="text" name="readname" id="readname" class="stit" value='{$username}' />
+      </td>
+    </tr>
+    <tr>
+      <td align="right" class="navi_link">性别：</td>
+      <td align="left">
+      {html_radios name="sex" options=$sex_options checked=$sex separator=" "}
+      </td>
+    </tr>
+    <tr>
+      <td align="right" class="navi_link">出生日期：</td>
+      <td align="left">
+      <input type="text" name="birth" id="birth" class="stit" value='{$birth}' onClick="WdatePicker()" />
+      </td>
+    </tr>
+    <tr>
+      <td align="right" class="navi_link">地区：</td>
+      <td align="left">
+      <select name="province" id="txt_province">          
+        {html_options options=$province_options selected=$province}        
+      </select>
+      <select name="city" id="txt_city">          
+        {html_options options=$city_options selected=$city}        
+      </select>
+      </td>
+    </tr>
+    <tr>
+      <td align="right" class="navi_link">联系地址：</td>
+      <td align="left"><input type="text" name="address" id="address" class="stit" value='{$address}' /></td>
+    </tr>
+    <tr>
+      <td align="right" class="navi_link">手机号码：</td>
+      <td align="left"><input type="text" name="mobile" id="mobile" class="stit" value='{$mobile}' /></td>
+    </tr>
+    <tr>
+      <td align="right" class="navi_link">固定电话：</td>
+      <td align="left"><input type="text" name="tel" id="tel" class="stit" value='{$tel}' /></td>
+    </tr>
+    <tr>
+      <td align="right" class="navi_link">QQ：</td>
+      <td align="left"><input type="text" name="qq" id="qq" class="stit" value='{$qq}' /></td>
+    </tr>
+  </table>
+    <table width="100%" border="0" align="center" cellpadding="0" cellspacing="0" class="table">    
+    <tr class="TR_BG_list">
+      <td align="right" class="navi_link">&nbsp;</td>
+      <td align="left"><input type="submit" name="button" id="button" value="提交" class="admin_submit" onclick="return Result()" /></td>
+    </tr>
+  </table>
+ 
+</form>
+ </div>
+</body>
+</html>

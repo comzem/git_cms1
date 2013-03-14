@@ -1,0 +1,74 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>互动设置</title>
+<link href="css/admincss.css" rel="stylesheet"type="text/css" />
+<link href="css/common.css" rel="stylesheet"type="text/css" />
+<script type="text/javascript" src="js/jquery.js"></script>
+<script type="text/javascript" src="js/Common.js"></script>
+</head>
+
+<body>
+<div class="mbody">
+<div class="pagetit">
+  <div class="ptit">安全设置</div>
+  <div class="topnav">
+    <a href="?action=sysconfig&operation=view&type=interactive" class="select"><u>互动设置</u></a>
+    <!--<a href="?action=sysconfig&operation=view&type=code"><u>验证码</u></a>
+    <a href="?action=sysconfig&operation=view&type=noip"><u>禁止IP</u></a>-->
+  <div class="clear"></div>
+  </div>
+  <div class="clear"></div>
+</div>
+
+  <form name="form1" method="post" action="admin.php?action=sysconfig&operation=save&type=interactive">    
+    <table border="0" cellspacing="1" cellpadding="3" class="stripe_tb">
+      <tr>
+        <td colspan="2" class="tdleft"><b>留言方式</b></td>
+      </tr>
+      <tr>
+        <td class="tdleft">{html_radios name="i0" class="mode" options=$i0_options checked=$i0 separator=" "}</td>
+        <td></td>
+      </tr>
+      <tr>
+        <td colspan="2" class="tdleft"><b>替换词语</b></td>
+      </tr>
+      <tr>
+        <td class="tdleft"><textarea name="i1" id="i1" class="w250" rows="5">{$i1}</textarea></td>
+        <td><span class="tdleft">（词语会被替换成***）每个词一行</span></td>
+      </tr>
+      <tr>
+        <td colspan="2" class="tdleft"><b>评论及留言</b></td>
+      </tr>
+      <tr>
+        <td class="tdleft">{html_radios name="i2" class="mode" options=$i2_options checked=$i2 separator=" "}</td>
+        <td> (是/否)需审核 </td>
+      </tr>
+      <tr>
+        <td colspan="2" class="tdleft"><b>验证码</b></td>
+      </tr>
+      <tr>
+        <td class="tdleft">{html_radios name="i3" class="mode" options=$i3_options checked=$i3 separator=" "} </td>
+        <td>评论将显示验证码</td>
+      </tr>
+      <tr>
+        <td colspan="2"><b>两次评论至少间隔时间(分钟)</b></td>
+      </tr>
+      <tr>
+        <td class="tdleft"><input type="text" name="i4" id="i4" class="w250" value="{$i4}" /></td>
+        <td>&nbsp;</td>
+      </tr>
+      <tr>
+        <td colspan="2" class="tdleft">是否禁止所有评论</td>
+      </tr>
+      <tr>
+        <td class="tdleft">{html_radios name="i5" class="mode" options=$i5_options checked=$i5 separator=" "} </td>
+        <td>&nbsp;</td>
+      </tr>
+    </table>
+    <input id="Submit1" type="submit" value="保存" />
+  </form>
+</div>
+</body>
+</html>

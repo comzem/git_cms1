@@ -1,0 +1,77 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>会员登陆</title>
+<script type="text/javascript" src="/js/jquery-1.8.0.js"></script>
+{literal}
+<style type="text/css">
+body{
+	margin:0px auto;
+	font-size:12px;
+	}
+.dengru_input {
+	border: 1px solid #ccc;
+	height: 25px;
+	line-height: 25px;
+	width: 160px;
+}
+.dengru_bg {
+	background: url(/images/ask/dengru.gif) no-repeat;
+	width: 79px;
+	height: 28px;
+	border: 0px;
+}
+</style>
+<script>
+	String.prototype.trim = function () { return this.replace(/(^\s*)|(\s*$)/g, ""); }
+$(function(){
+	$("#denglu").click(function(){				
+		if ($("#username").val().trim()=="" || $("#password").val().trim()==""){
+			$("#lmsg").html("请输入帐号或密码。");
+			$("#lmsg").addClass("lmsg");
+			return false;
+		}else if($("#verifycode").val().trim()==""){
+			$("#lmsg").html("请输入验证码。");
+			$("#lmsg").addClass("lmsg");
+			return false;
+		}else{
+			return true;
+		}
+	});
+});
+    </script>
+{/literal}
+</head>
+
+<body>
+<form action="login.php?type=login1&act=login" method="post">
+  <table width="100%" border="0" cellspacing="0" cellpadding="5" id="logintab">
+    <tr>
+      <td></td>
+      <td id="ShowTip"></td>
+    </tr>
+    <tr>
+      <td width="85" align="right">用户名：</td>
+      <td><input name="username" type="text" class="dengru_input" id="username" /></td>
+      <td>&nbsp;</td>
+    </tr>
+    <tr>
+      <td align="right">密　码：</td>
+      <td><input name="password" type="password" class="dengru_input" id="password" /></td>
+      <td>&nbsp;</td>
+    </tr>
+    <tr>
+      <td>&nbsp;</td>
+      <td><input name="denglu" id="denglu" type="submit" class="dengru_bg" value=""></td>
+      <td><div id="lmsg">{$msg}</div></td>
+    </tr>
+    <tr>
+      <td>&nbsp;</td>
+      <td><div class="zhuche_msg">还没有账号？<a href="/my/reg.php" id="zhuce" target="_parent">立即注册</a></div></td>
+      <td></td>
+    </tr>
+  </table>
+</form>
+</body>
+</html>

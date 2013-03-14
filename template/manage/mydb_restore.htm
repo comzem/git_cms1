@@ -1,0 +1,106 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>数据恢复</title>
+<link href="css/admincss.css" rel="stylesheet"type="text/css" />
+<link href="css/common.css" rel="stylesheet"type="text/css" />
+<script type="text/javascript" src="js/jquery.js"></script>
+<script type="text/javascript" src="js/Common.js"></script>
+<script type=text/javascript src="js/lhgcore.lhgdialog.min.js?self=true&skin=default"></script>
+{literal}
+<script type="text/javascript">
+	$(function(){
+		$("#delete").click(function(){
+			if (confirm("确定删除码？")){
+				$.dialog.tips('文件删除中...',1000,'loading.gif');
+				$("#form1").attr("action","?action=tools&operation=dbfiledel");
+				$("#form1").submit();
+				setTimeout(function(){
+					$.dialog.tips('文件删除完成',1,'tips.gif',function(){});
+				}, 5000 );
+				return true;
+			}else{
+				return false;
+			}
+		});
+		
+		$("#restore").click(function(){
+			$.dialog.tips('数据恢复中...',1000,'loading.gif');
+			$("#form1").attr("action","?action=tools&operation=dbrestore");
+			$("#form1").submit();
+			setTimeout(function(){
+				$.dialog.tips('数据恢复完毕',1,'tips.gif',function(){});
+			}, 5000 );
+		});
+		
+		$("#downzip").click(function(){
+			$.dialog.tips('数据打包中...',1000,'loading.gif');
+			$("#form1").attr("action","?action=tools&operation=packzip");
+			$("#form1").submit();
+			setTimeout(function(){
+				$.dialog.tips('数据打包完毕',1,'tips.gif',function(){});
+			}, 5000 );
+		});
+	});
+</script>
+{/literal}
+</head>
+
+<body>
+
+<div class="mbody">
+<div class="pagetit">
+  <div class="ptit"> 数据库</div>
+  <div class="topnav"> <a href="?action=tools&operation=mydb"><u>备份</u></a> <a href="?action=tools&operation=restoreview" class="select"><u>恢复</u></a> <a href="?action=tools&operation=mydb&t=optimize"><u>优化</u></a>
+    <div class="clear"></div>
+  </div>
+  <div class="clear"></div>
+</div>
+
+<div class="toptip">
+  <h2>提示：</h2>
+  <p> 本功能在恢复备份数据的同时，将全部覆盖原有数据，请确定恢复前已将网站关闭，恢复全部完成后可以将网站重新开放。{$iszip}</p>
+</div>
+<form id="form1" name="form1" method="post" action="">
+<table width="100%" border="0" cellspacing="0" cellpadding="0" class="table">
+    <tr>
+      <th style="width:30px;"></th>
+      <th>名称</th>
+      <th>尺寸</th>
+      <th>时间</th>
+      <th>操作</th>
+    </tr>
+{section name=loop loop=$list}
+    <tr>
+    <td style="width:30px;"><input type="checkbox" name="check_id[]" id="gcheck" value='{$list[loop].name}'></td>
+    <td align="left">{$list[loop].name}</td>
+    <td align="left">{$list[loop].filesize}</td>
+    <td align="left">{$list[loop].time|date_format:"%Y-%m-%d %H:%M:%S"}</td>
+    <td>
+    {if $list[loop].ext=="zip"}
+    	<a href="?action=tools&operation=unzip&filepath={$list[loop].name}" onclick="if(confirm('确定解压到当前目录吗？'))return true;return false">解压文件</a>
+    {/if}
+    <a href="?action=tools&operation=dbrestore&check_id={$list[loop].name}" onclick="if(confirm('确定恢复数据吗'))return true;return false">恢复</a>
+    <a href="?action=tools&operation=bakdel&file={$list[loop].name}" onclick="if(confirm('确定删除吗'))return true;return false">删除</a></td>
+    </tr>
+{/section}
+</table>
+<div style="height:35px;"></div>
+<table width="100%" border="0" cellspacing="0" cellpadding="0" class="table" id="ToolBar">
+	<tr>
+      <td style="width:30px;"><input id="chkAll" name="chkAll" type="checkbox" /></td>
+	  <td>      
+	   <input type="button" name="Submit22" id="restore" value="恢复备份数据" class="admin_submit" style="display:none;" />
+       <input type="button" name="Submit21" id="delete" value="删除" class="admin_submit" />
+       数据包名称:<input name="zipname" type="text" id="zipname"   value="db" maxlength="10" />
+       <input type="button" name="Submit23" id="downzip" value="数据打包下载" class="admin_submit" />
+      </td>
+	  </tr>
+  </table>
+
+</form>
+</div>
+
+</body>
+</html>

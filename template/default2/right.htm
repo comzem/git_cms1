@@ -1,0 +1,29 @@
+<div class="remai fl">
+    <h3>商品分类</h3>
+    <div class="hotlist spfl">
+    {section name=sec1 loop=$nav}
+      <div class="zhulei"><a href="/shop/search_product.php?id={$nav[sec1].fid},0" class="sel">{$nav[sec1].title}</a></div>
+      <div class="clear"></div>
+      
+      <div class="zilei"> 
+      {section name=sec2 loop=$nav[sec1].sub}
+      <a href="/shop/search_product.php?id={$nav[sec1].fid},{$nav[sec1].sub[sec2].fid}" >{$nav[sec1].sub[sec2].title}</a>
+      {/section}
+        <div class="clear"></div>
+      </div>
+     {/section}
+      <div class="clear"></div>
+    </div>
+    <h3 class="mat10">热销排行</h3>
+    <ul class="hotlist">
+    {section name=loop loop=$rx}
+      <li> <span class="fl hotimg"><img src="/upload/{$rx[loop].photo}" title="{$rx[loop].title}" /></span> <span class="fl hotname"> <a href="/shop/item.php?id={$rx[loop].pid}" title="{$rx[loop].title}" target="_blank">{$rx[loop].title}</a> 
+      {if $jgdisplay=='1'}
+      <span class="cred num strong lh20">¥{$rx[loop].price1}</span>
+      {/if}
+       </span>
+        <div class="clear"></div>
+      </li>
+	{/section}
+    </ul>
+  </div>

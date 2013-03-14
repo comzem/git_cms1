@@ -1,0 +1,94 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title></title>
+<link href="css/admincss.css" rel="stylesheet"type="text/css" />
+<script type="text/javascript" src="js/jquery.js"></script>
+<script type="text/javascript" src="js/Common.js"></script>
+{literal}
+<script>
+$(function(){
+	var t="<tr><td> </td><td><input name='sort[]' class='childid3' size='3' type='text' /></td><td><input name='sitename[]' class='childid3' type='text' /></td><td><input name='url[]' type=\"text\" size='28' /></td><td><input name='description[]' class='childid3' type=\"text\" size='28' /></td><td><input name='logo[]' class='childid3' type=\"text\" />&nbsp;&nbsp;<a href='javascript:;' class='close1'><img src='images/no.gif' border='0'></a></td></tr>";
+	$("#addc").live("click",function(){
+		$("#tbody").after(t);
+	})
+	$(".close1").live("click",function(){
+		$(this).parent().parent().remove();
+	})
+	$("#chkAll,.gcheck").change(function(){
+		if ($(this).attr("checked")){
+			$("#form1").attr("action","?action=links&operation=delete");
+		}else{
+			$("#form1").attr("action","?action=links&operation=save");
+		}
+	});
+	
+	 var is_add=true;
+    $(".edit").click(function(){	  
+	  if (is_add){
+		is_add=false;
+	    var inval = $(this).html();
+	    var infd = $(this).attr("field");
+	    var inid = $(this).parent().attr("id");
+		$(this).html("<input id='edit"+infd+inid+"' value='"+inval+"'> ");
+		$("#edit"+infd+inid).focus().live("blur",function(){
+		    var editval = $(this).val();		
+			$(this).parents("td").html(editval);
+			$.post("?action=links&operation=asy",{id:inid,fd:infd,val:editval});			
+			is_add=true;
+		});}
+	});	
+	
+});
+</script>
+{/literal}
+</head>
+
+<body>
+
+<div class="nav_bg1"><b>友情链接</b></div>
+<div class="tbbody">
+<form id="form1" name="form1" method="post" action="{$tab}">
+  <table width="100%" border="0" cellspacing="0" cellpadding="3" class="table">
+  <tbody id="tbody">
+    <tr class="nav_tit">
+      <th style="width:30px;"></th>
+      <th style="width:10%;">显示顺序</th>
+      <th style="width:20%;">站点名称</th>
+      <th style="width:20%;">站点 URL</th>
+      <th style="width:20%;">文字说明(可选)</th>
+      <th>logo 地址(可选)</th>
+    </tr>
+    {section name=loop loop=$list}
+    <tr id="{$list[loop].id}" onmouseover="c=this.style.backgroundColor;this.style.backgroundColor='#f4f4f4';" onmouseout="this.style.backgroundColor=c;">
+      <td><input type="checkbox" name="check_id[]" id="gcheck" class="gcheck" value='{$list[loop].id}'></td>
+      <td class="edit" field="sort">{$list[loop].sort}</td>
+      <td class="edit" field="sitename">{$list[loop].sitename}</td>
+      <td class="edit" field="url">{$list[loop].url}</td>
+      <td class="edit" field="description">{$list[loop].description}</td>
+      <td class="edit" field="logo">{$list[loop].logo}</td>
+    </tr>
+    {/section}
+
+    </tbody>
+  </table>
+  <table width="100%" border="0" cellspacing="0" cellpadding="3" class="table">
+      <tr>
+      <td colspan="6">
+      <a href="javascript:;" id="addc">
+        <img src="images/add_1.gif" border="0" />&nbsp;&nbsp;添加友情链接
+      </a>
+      </td>
+    </tr>
+    <tr>
+      <td colspan="12"><input id="chkAll" type="checkbox" />删? 
+      <input type="submit" value="提交" name="Button1" onclick="" />
+        </td>
+    </tr>
+    </tbody>
+  </table>
+</form>
+</div>
+</body>
+</html>

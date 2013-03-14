@@ -1,0 +1,50 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title></title>
+<link href="css/admincss.css" rel="stylesheet"type="text/css" />
+<script type="text/javascript" src="../edito/jquery/jquery-1.4.4.min.js"></script>
+<script language="javascript" src="js/Common.js" type="text/javascript"></script>
+</head>
+
+<body>
+<div class="nav_bg1"><b>会员管理</b></div>
+<div class="tbbody">
+<form id="form1" name="form1" method="post" action="{$tab}">
+  <table width="100%" border="0" cellspacing="0" cellpadding="3" class="table" tab="member_userlog.php">
+    <tr class="nav_tit">
+      <th style="width:30px;"><input id="chkAll" type="checkbox" onclick="checkAll('gcheck')" /></th>
+      <th>会员ID</th>
+      <th>会员帐号</th>
+      <th>会员昵称</th>
+      <th>邮件</th>
+      <th>注册时间</th>
+      <th>会员状态</th>
+      <th>操作</th>
+    </tr>
+    {section name=loop loop=$list}
+    <tr onmouseover="c=this.style.backgroundColor;this.style.backgroundColor='#f4f4f4';" onmouseout="this.style.backgroundColor=c;">
+      <td><input type="checkbox" name="check_id[]" id="gcheck" value='{$list[loop].uid}'></td>
+      <td>{$list[loop].uid}</td>
+      <td>{$list[loop].username} <span style="color:#f00;">({$list[loop].gid})</span></td>
+      <td>{$list[loop].nickname}</td>
+      <td>{$list[loop].email}</td>
+      <td>{$list[loop].regdate|date_format:"%Y-%m-%d %H:%M:%S"}</td>
+      <td>
+      {if $list[loop].status==1} <img src="images/admin/onCorrect.gif" /> {else} <img src="images/admin/wrong.gif" /> {/if}
+      </td>
+      <td><a href="javascript:;" class="showbox" tid="0" id="{$list[loop].uid}">查看日志</a> <a href="?action=members&operation=view&id={$list[loop].uid}">修改</a> <a href="#" onclick="return getDel(this,'{$list[loop].uid}','member_user.php')">删除</a></td>
+    </tr>
+    {sectionelse}
+    没有数据...
+    {/section}
+    <tr>
+      <td><input type="submit" value="删" name="Button1" onclick="return del_check(this.form,'member_user.php')" /></td>
+      <td colspan="9" class="subpage"> {$paging}</td>
+    </tr>
+  </table>
+</form>
+</div>
+</body>
+</html>

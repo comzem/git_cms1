@@ -1,0 +1,43 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title></title>
+<link href="css/admincss.css" rel="stylesheet"type="text/css" />
+<script type="text/javascript" src="js/jquery.js"></script>
+<script language="javascript" src="js/Common.js" type="text/javascript"></script>
+</head>
+
+<body>
+<div class="nav_bg1"><b>单页管理</b></div>
+<div class="tbbody">
+<form id="form1" name="form1" method="post" action="{$tab}">
+  <table width="100%" border="0" cellspacing="0" cellpadding="0" class="table">
+    <tr>
+      <th style="width:30px;"></th>
+      <th>标题</th>
+      <th>状态</th>
+      <th>更新时间</th>
+      <th>操作</th>
+    </tr>
+    {section name=loop loop=$list}
+    <tr onmouseover="c=this.style.backgroundColor;this.style.backgroundColor='#f4f4f4';" onmouseout="this.style.backgroundColor=c;">
+      <td><input type="checkbox" name="check_id[]" id="gcheck" value='{$list[loop].id}'></td>
+      <td><span style="color:#ccc;">[{$list[loop].fid}]</span>{$list[loop].title}</td>
+      <td> {if $list[loop].status==1} <img src="images/admin/onCorrect.gif" /> {else} <img src="images/admin/wrong.gif" /> {/if} </td>
+      <td>{$list[loop].add_time|date_format:"%Y-%m-%d %H:%M:%S"}</td>
+      <td><a href="?action=single&operation=view&id={$list[loop].id}">修改</a></td>
+    </tr>
+    {sectionelse}
+    没有数据...
+    {/section}
+    <tr>
+    <td colspan="2"><input id="chkAll" type="checkbox" onclick="checkAll('gcheck')" />删? <input type="submit" value="提交" name="Button1" />
+    </td>
+      <td colspan="5" class="subpage">
+        {$paging}</td>
+    </tr>
+  </table>
+</form>
+</body>
+</html>

@@ -1,0 +1,57 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>{$seotitle}-{$webname}</title>
+<meta name="keywords" content="{$keywords}">
+<meta name="description" content="{$description}" />
+<link type="text/css" rel="stylesheet" href="{$domain}{$tpl}/css/style.css" />
+<script type="text/javascript" src="/js/jquery.js"></script>
+<script type="text/javascript" src="/js/shop.js"></script>
+</head>
+
+<body>
+{include file="{$path}header.htm"}
+<div class="content">
+  <div class="now">您现在的位置：<a href='{$domain}'>首页</a> > <a href='#'>商品列表</a></div>
+  {include file="{$path}right.htm"}
+  <div class="fr xiangqing" style="margin-top:0">
+    <div class="caidan">
+      <h3 class="fl">商品列表</h3>
+      <!------------
+      <ul class="fr">
+        <li class="prolist_px"><a href="?">默认排序</a></li>
+        <li class="prolist_px"> <a href="?orderby=clicknum_desc">按人气</a> </li>
+        <li class="prolist_px"> <a href="?orderby=sellnum_desc">按销量</a> </li>
+        <li class="prolist_px"> <a href="?orderby=smoney_desc">按价格</a> </li>
+      </ul>-------------->
+      <div class="clear"></div>
+    </div>
+    <div class="prolist"> {section name=loop loop=$list}
+      <div class="prolist_1 prolist_border">
+        <p class="prolist_img prolist_img1"><a href="item.php?id={$list[loop].pid}" title="{$list[loop].title}" target="_blank"><img src="/upload/{$list[loop].photo}" title="{$list[loop].title}" style="display:block" /></a></p>
+        <p class="prolist_name"><a href="item.php?id={$list[loop].pid}" title="{$list[loop].title}" target="_blank"> {$list[loop].title}</a></p>
+        {if $jgdisplay=='1'}
+        <p><span class="num cred strong">¥</span><span class="num1 strong cred">{$list[loop].price1}</span> <s class="num c888">¥ {$list[loop].price1*1.5}</s></p>
+        {/if}
+      </div>
+      {sectionelse}	没有数据...
+      {/section} </div>
+    <div class="clear"></div>
+    <div class="fenye mat15">{$paging}
+<div class="clear"></div>
+      {literal}
+      <style type="text/css"> 
+.fenye span{float:left; margin-right:8px;}
+.fenye a{border:1px #C2D5E3 solid; padding:0 8px; margin-right:8px; color:#0066CC; background:#fff; float:left;  height:24px;}
+.fenye a:hover{background:#fff5f5; border:1px #76a5c8 solid;}
+.fenye .sel{background:#E5EDF2; color:#333; font-weight:bold; border:1px #C2D5E3 solid;  padding:0 8px;}
+</style>
+      {/literal}</div>
+  </div>
+  <div class="clear"></div>
+</div>
+<div class="clear"></div>
+{include file="{$path}footer.htm"}
+</body>
+</html>

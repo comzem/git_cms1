@@ -1,0 +1,45 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title></title>
+<link href="css/admincss.css" rel="stylesheet"type="text/css" />
+<script type="text/javascript" src="js/jquery.js"></script>
+<script language="javascript" src="js/Common.js" type="text/javascript"></script>
+</head>
+
+<body>
+<div class="all_list">
+  <div class="list_move"><a href='video_item.php?act=display1'>添加</a></div>
+  <div class="list_out">管理</div>
+</div>
+<form id="form1" name="form1" method="post" action="video_item.php?act={$tab}">
+  <table width="100%" border="0" cellspacing="0" cellpadding="3" class="table">
+    <tr class="nav_tit">
+      <th style="width:30px;"><input id="chkAll" type="checkbox" onclick="checkAll('gcheck')" /></th>
+      <th>视频栏目</th>
+      <th>标题</th>
+      <th>发布人</th>
+      <th>发布时间</th>
+      <th>操作</th>
+    </tr>
+    {section name=loop loop=$list}
+    <tr onmouseover="c=this.style.backgroundColor;this.style.backgroundColor='#f4f4f4';" onmouseout="this.style.backgroundColor=c;">
+      <td><input type="checkbox" name="check_id[]" id="gcheck" value='{$list[loop].id}'></td>
+      <td>{$list[loop].classid_b}{$list[loop].classid_a}{$list[loop].classid_t}</td>
+      <td><img src="/{$list[loop].video_img}" align="left" style="width:50px; height:50px;" />{$list[loop].title}</td>
+      <td>{$list[loop].user_id}</td>
+      <td>{$list[loop].add_time}</td>
+      <td><a href="video_item.php?act=display2&id={$list[loop].id}">修改</a> <a href="#" onclick="return getDel(this,'{$list[loop].id}','video_item.php')">删除</a></td>
+    </tr>
+    {sectionelse}
+    没有数据...
+    {/section}
+    <tr>
+      <td colspan="8"><input type="submit" value="删除" name="Button1" onclick="return del_check(this.form,'video_item.php')" />
+        {$paging}</td>
+    </tr>
+  </table>
+</form>
+</body>
+</html>

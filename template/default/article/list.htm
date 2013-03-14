@@ -1,0 +1,34 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>{$seotitle}{$webname}</title>
+<meta name="keywords" content="{$keywords}" />
+<meta name="description" content="{$description}" />
+<link type="text/css" rel="stylesheet" href="{$domain}{$tpl}/css/style.css" />
+<script type="text/javascript" src="/js/jquery.js"></script>
+<script type="text/javascript" src="/js/news.js"></script>
+</head>
+
+<body>
+{include file="{$path}header.htm"}
+
+<div class="content">
+	<div class="now">您现在的位置：<a href="/">首页</a>  > 资讯中心 </div>
+	{include file="{$path}right1.htm"}
+	<div class="danye_right">
+				<ul class="wenzhang_list">
+                {section name=loop loop=$list}
+			<li><a href="details.php?id={$list[loop].aid}" title="{$list[loop].title}">{$list[loop].title}</a><span class="fl c888">(浏览量：{$list[loop].hits})</span> <span class="fr">{$list[loop].add_time|date_format:"%Y-%m-%d %H:%M:%S"}</span><div class="clear"></div></li>
+            {sectionelse}
+                    没有数据...
+                    {/section}
+					</ul>
+		<div class="fenye mat8">{$paging}</div>
+			</div>
+</div>
+<div class="clear"></div>
+{include file="{$path}footer.htm"}
+
+</body>
+</html>

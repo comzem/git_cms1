@@ -1,0 +1,40 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>{$title}{$seotitle}{$webname}</title>
+<meta name="keywords" content="{$title},{$keywords}" />
+<meta name="description" content="{$description}" />
+<link type="text/css" rel="stylesheet" href="{$domain}{$tpl}/css/style.css" />
+<script type="text/javascript" src="/js/jquery.js"></script>
+</head>
+
+<body>
+{include file="{$path}header.htm"}
+
+<div class="content">
+	<div class="now">您现在的位置：<a href="/">首页</a>  >  {$title}</div>
+	{include file="{$path}right1.htm"}
+	<div class="danye_right">
+				<h3 class="cred">{$title}</h3>
+		<p class="c888 mat5" style="text-align:center;">发布日期：{$add_time|date_format:"%Y-%m-%d %H:%M:%S"}　浏览量：{$hits}</p>
+		<div class="danye_main">
+		{literal}
+		<style> 
+.taocan td,th{padding:7px 5px; border:1px #ddd solid; color:#555; font-size:12px; line-height:18px;}
+.taocan th{ background:#2D89AE; color:#fff; font-weight:normal;}
+.taocan .tt1{background:#f3f3f3;}
+.taocan .money{color:#cb2529;}
+</style>
+{/literal}
+<div class="taocan"></div>
+<p style="margin-top:20px;">
+	{$content}
+</p></div>
+			</div>
+</div>
+<div class="clear"></div>
+{include file="{$path}footer.htm"}
+
+</body>
+</html>

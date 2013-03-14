@@ -1,0 +1,117 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>会员中心</title>
+<meta name="keywords" content="{$keywords}">
+<link type="text/css" rel="stylesheet" href="{$tpl}/css/style.css" />
+<link href="{$tpl}/css/userhead.css" rel="stylesheet"type="text/css" />
+<link href="{$tpl}/css/my.css" rel="stylesheet"type="text/css" />
+<script type="text/javascript" src="../js/jquery.js"></script>
+<script type="text/javascript" src="../js/cart.js"></script>
+<script type="text/javascript" src="/DatePicker/WdatePicker.js"></script>
+</head>
+<body>
+{include file="{$path}header.htm"}
+<div class="content">
+<div class="bor1">
+  <table width="100%" border="0" cellspacing="0" cellpadding="0">
+    <tr>
+      <td class="left" valign="top"> {include file="{$path}my/menu.htm"} </td>
+      <td class="right" valign="top"><form id="form1" action="{$tab}" method="post" name="form1">
+  <table width="100%" border="0" align="center" cellpadding="0" cellspacing="0" class="table">
+    <tr style="display:none;">
+      <td align="right" class="navi_link">用户组：</td>
+      <td align="left">
+      <select name="gid">{html_options options=$gid_options selected=$gid}</select>
+      </td>
+    </tr>
+    <tr>
+      <td align="right" class="navi_link">*帐号：</td>
+      <td align="left">
+      <div class="input_left">
+      <input type="text" name="username" id="username" class="stit" value='{$username}' onblur="return verify_user_name()" />
+        </div>
+        <div id="user_name_msg"></div>
+      </td>
+    </tr>
+    <tr>
+      <td align="right" class="navi_link"> 昵称：</td>
+      <td align="left">
+          <input type="text" name="nickname" id="nickname" class="stit" value='{$nickname}' onblur="return verify_nick_name()" /></td>
+    </tr>
+    <tr>
+      <td align="right" class="navi_link">密码：</td>
+      <td align="left"><input type="text" name="password" id="password" class="stit" value='{$password}' /></td>
+    </tr>
+    <tr>
+      <td align="right" class="navi_link">* Email：</td>
+      <td align="left"><div class="input_left">
+          <input type="text" name="email" id="email" class="stit" value='{$email}' onblur="return verify_email()" />
+        </div>
+        <div id="email_msg"></div></td>
+    </tr>
+
+  </table>
+  <div class="nav_bg">选填</div>
+  <table width="100%" border="0" align="center" cellpadding="0" cellspacing="0" class="table">
+    <tr>
+      <td align="right" class="navi_link">姓名：</td>
+      <td align="left">
+        <input type="text" name="readname" id="readname" class="stit" value='{$username}' />
+      </td>
+    </tr>
+    <tr>
+      <td align="right" class="navi_link">性别：</td>
+      <td align="left">
+      {html_radios name="sex" options=$sex_options checked=$sex separator=" "}
+      </td>
+    </tr>
+    <tr>
+      <td align="right" class="navi_link">出生日期：</td>
+      <td align="left">
+      <input type="text" name="birth" id="birth" class="stit" value='{$birth}' onClick="WdatePicker()" />
+      </td>
+    </tr>
+    <tr>
+      <td align="right" class="navi_link">地区：</td>
+      <td align="left">
+      <select name="province" id="txt_province">          
+        {html_options options=$province_options selected=$province}        
+      </select>
+      <select name="city" id="txt_city">          
+        {html_options options=$city_options selected=$city}        
+      </select>
+      </td>
+    </tr>
+    <tr>
+      <td align="right" class="navi_link">联系地址：</td>
+      <td align="left"><input type="text" name="address" id="address" class="stit" value='{$address}' /></td>
+    </tr>
+    <tr>
+      <td align="right" class="navi_link">手机号码：</td>
+      <td align="left"><input type="text" name="mobile" id="mobile" class="stit" value='{$mobile}' /></td>
+    </tr>
+    <tr>
+      <td align="right" class="navi_link">固定电话：</td>
+      <td align="left"><input type="text" name="tel" id="tel" class="stit" value='{$tel}' /></td>
+    </tr>
+    <tr>
+      <td align="right" class="navi_link">QQ：</td>
+      <td align="left"><input type="text" name="qq" id="qq" class="stit" value='{$qq}' /></td>
+    </tr>
+  </table>
+    <table width="100%" border="0" align="center" cellpadding="0" cellspacing="0" class="table">    
+    <tr class="TR_BG_list">
+      <td align="right" class="navi_link">&nbsp;</td>
+      <td align="left"><input type="submit" name="button" id="button" value="提交" class="admin_submit" onclick="return Result()" /></td>
+    </tr>
+  </table>
+</form></td>
+    </tr>
+  </table>
+</div>
+</div>
+{include file="{$path}my/myfooter.htm"}
+</body>
+</html>

@@ -1,0 +1,62 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>水印设置</title>
+<link href="css/admincss.css" rel="stylesheet"type="text/css" />
+<link href="css/common.css" rel="stylesheet"type="text/css" />
+<script type="text/javascript" src="js/jquery.js"></script>
+<script type="text/javascript" src="js/Common.js"></script>
+</head>
+
+<body>
+<div class="mbody">
+<div class="pagetit">
+  <div class="ptit">站点设置</div>
+  <div class="topnav">
+    <a href="?action=sysconfig&operation=view&type=attachment"><u>附件设置</u></a>
+    <a href="?action=sysconfig&operation=view&type=water" class="select"><u>水印设置</u></a>
+  <div class="clear"></div>
+  </div>
+  <div class="clear"></div>
+</div>
+
+<form name="form1" method="post" action="admin.php?action=sysconfig&operation=save&type=water">
+  
+  <table border="0" cellspacing="1" cellpadding="3" class="stripe_tb">
+    <tr>
+      <td colspan="2"><b>水印：</b></td>
+      </tr>
+    <tr>
+    <td>
+      <div style="width:110px; float:left; line-height:32px;">{html_radios name="w0" options=$w0_options checked=$w0 separator=" "}</div>
+      </td>
+      <td>&nbsp;</td>
+    </tr>
+    <tr>
+      <td colspan="2"><b>水印添加条件：</b></td>
+      </tr>
+    <tr>
+      <td class="tdleft"><input type="text" name="w1" id="w1" class="w100" value="{$w1}" /> × <input type="text" name="w2" id="w2" class="w100" value="{$w2}" /></td>
+      <td>设置水印添加的条件，小于此尺寸的图片附件将不添加水印</td>
+    </tr>
+    <tr>
+      <td colspan="2"><b>水印类型：</b></td>
+      </tr>
+    <tr>
+      <td class="tdleft">{html_radios name="w3" options=$w3_options checked=$w3 separator="<br />"}</td>
+      <td>如果设置 图片作为水印，水印图片为 images/watermark.gif</td>
+    </tr>
+    <tr>
+      <td colspan="2"><b>文本水印文字： </b></td>
+    </tr>
+    <tr>
+      <td class="tdleft"><textarea name="w4" rows="5" class="w250" id="w4">{$w4}</textarea></td>
+      <td><br /></td>
+    </tr>
+  </table>
+  <input id="Submit1" type="submit" value="保存" />
+
+</form></div>
+</body>
+</html>

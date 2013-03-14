@@ -1,0 +1,191 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>{$seotitle}-{$webname}</title>
+<meta name="keywords" content="{$keywords}" />
+<meta name="description" content="{$description}" />
+<link rel=stylesheet type=text/css href="{$tpl}/css/all.css">
+<link type="text/css" rel="stylesheet" href="{$tpl}/css/style.css" />
+<script type="text/javascript" src="/js/jquery.js"></script>
+<script type=text/javascript src="/js/lhgcore.lhgdialog.min.js?self=true&skin=default"></script>
+<script type="text/javascript" src="/js/cart.js"></script>
+<script type="text/javascript" src="/js/cms.js"></script>
+</head>
+
+<body>
+{include file="{$path}header.htm"}
+<form id="form2" action="/shop/order/" method="post">
+<DIV class=content>
+  <DIV style="BACKGROUND: #fff" class=width960>
+    <DIV class=now>您现在的位置：<a href='/'>首页</a> {$classify} > {$title}</DIV>
+    <DIV class="fl proimg"><img src="/upload/{$photo}" id="bimg" style="width:380px; height:380px;" /></DIV>
+    <DIV class="fr proinfo">
+      <H3>{$title}</H3>
+      {if $jgdisplay=='1'}
+      <P class="lh30 mat5">市 场 价： <S class="num c888">¥ {$price1*1.5}</S></P>
+      <P class=lh30>商 城 价： <SPAN class="cred1 font20 num strong">¥ {$price1}</SPAN></P>
+      <P class=lh30>运　　费： {if $yuanfei=="B"}
+        平邮:{$pingyou} 快递:{$kuaidi} EMS:{$ems}
+        {else}
+        卖家包邮
+        {/if}</P>
+        {/if}
+      <P class=lh30>销售情况： 共售出 <SPAN class="cred num strong">{$buynum}</SPAN> 件 <a href="javascript:find_comment();" class="cblue">(已有{$pingjia}人评价)</a></P>
+      <P style="_margin-top: 10px" class=lh30>消费保障： <IMG title="7天无条件退换货" src="{$tpl}/images/bz_1.gif"> <IMG title="保证正品，假一赔三" src="{$tpl}/images/bz_2.gif"> <IMG title="7天价格保障" src="{$tpl}/images/bz_4.gif"> <IMG title="专业配送，支持货到付款" src="{$tpl}/images/bz_5.gif"></P>
+      <span {$dis}> {section name=loop loop=$p}
+      <div class="fl" style="margin-top:6px;">{$p[loop].skey}：</div>
+      <ul class="property fl" obj="{$p[loop].form}">
+        {section name=loop1 loop=$p[loop].sub}
+        <li val='{$p[loop].sub[loop1].val}'>{$p[loop].sub[loop1].val}</li>
+        {/section}
+        <div class="clear"></div>
+      </ul>
+      <div class="clear"></div>
+      {$p[loop].formcont}
+      {/section}
+      <input name="proinput" id="proinput" type="hidden" value="{$proinput}" />
+      {$script} </span>
+      {if $jgdisplay=='1'}
+      <DIV class=buyinfo>
+        <DIV class=shuliang><SPAN class="fl mat2">数量：</SPAN> <img src="{$domain}{$tpl}/images/jian.gif" id="jian" />
+        <input type="text" name="product_num" id="product_num" value="1" />
+            <input name="product_id" id="product_id" type="hidden" value="{$pid}" />
+          <img src="{$domain}{$tpl}/images/jia.gif" id="jia" /> <SPAN class="fl c888 mal5 mat2">（库存 {$amount}）</SPAN> </DIV>
+        <DIV class=clear></DIV>
+        <DIV class="xuxian1 mat8"></DIV>
+        <P class=mat10>
+          <input name="buy_product" class="fl buy" id="buy_product" type="submit" value="" />
+          <input name="ajaxcart" class="sctj fl" id="ajaxcart" type="button" value="加入购物车" />
+        </P>
+        <DIV class=clear></DIV>
+      </DIV>
+      {/if}
+      <P class=mat15>上架时间：<SPAN class=c666>{$add_time|date_format:"%Y-%m-%d %H:%M:%S"}</SPAN>　　
+        浏览：<SPAN class=c666>{$hits} 次</SPAN>　　收藏：<SPAN class=c666>1 人</SPAN></P>
+      <DIV style="HEIGHT: 25px; OVERFLOW: hidden" class=mat15><!-- Baidu Button BEGIN -->
+        <DIV style="LINE-HEIGHT: 12px" id=bdshare class=bdshare_b> <IMG src="{$tpl}/images/type-button-1.jpg"> </DIV>
+        <SCRIPT id=bdshare_js type=text/javascript 
+data="type=button&amp;uid=456179"></SCRIPT> 
+        <SCRIPT id=bdshell_js type=text/javascript></SCRIPT> 
+        <SCRIPT type=text/javascript>
+					document.getElementById("bdshell_js").src = "http://bdimg.share.baidu.com/static/js/shell_v2.js?t=" + new Date().getHours();
+				</SCRIPT> 
+        <!-- Baidu Button END --></DIV>
+      <DIV class=clear></DIV>
+    </DIV>
+        <input name="username" id="username" type="hidden" value="{$username}" />
+    <input name="uid" id="uid" type="hidden" value="{$uid}" />
+    <input type="hidden" name="fid" id="fid" />
+    <input type="hidden" name="showdiv" id="showdiv" />
+    <DIV class=clear></DIV>
+    <DIV class="remai fl">
+      <H3>热销排行</H3>
+      <ul class="hotlist">
+        {section name=loop loop=$rx}
+        <li> <span class="fl hotimg"><img src="/upload/{$rx[loop].photo}" title="{$rx[loop].title}" /></span> <span class="fl hotname"> <a href="/shop/item.php?id={$rx[loop].pid}" title="{$rx[loop].title}" target="_blank">{$rx[loop].title}</a> {if $jgdisplay=='1'} <span class="cred num strong lh20">¥{$rx[loop].price1}</span> {/if} </span>
+          <div class="clear"></div>
+        </li>
+        {/section}
+      </ul>
+    </DIV>
+    <DIV class="fr xiangqing">
+      <DIV class=caidan>
+        <UL id=js_menu class=fl>
+          <LI class=sel><A href="javascript:;">商品展示</A></LI>
+          <li class="showmsg" fid="1"><a href="javascript:;">售前咨询({$pl_total})</a></li>
+          <li class="showmsg" fid="2"><a href="javascript:;">顾客评价({$pj_total})</a></li>
+          <LI><A href="javascript:;">售后服务</A></LI>
+        </UL>
+        <DIV class="fr c666 mat5">商品货号：{$bianma}</DIV>
+      </DIV>
+      <DIV class="promain js_menuhtml"> {$content} </DIV>
+      <!--咨询 Start-->
+      <DIV style="DISPLAY: none" class="propl mat10 js_menuhtml">
+        <div class="plmain" id="js_askhtml">
+          <div class="xuxian1"></div>
+          <div class="zixunbox">
+            <div class="fl pl_l"></div>
+            <div class="fl pl_m">请在这里发表您的问题</div>
+            <div class="fl pl_r"></div>
+            <div class="clear"></div>
+            <table width="100%" border="0" cellspacing="0" cellpadding="0">
+              <tr>
+                <td valign="top">用户名称：</td>
+                <td>{$username}</td>
+              </tr>
+              <tr>
+                <td valign="top">咨询内容：</td>
+                <td><textarea name="ask_text" fid="1" id="ask_text" style="width:550px;height:120px;resize:none;"></textarea></td>
+              </tr>
+              <tr>
+                <td></td>
+                <td><input type="button" id="zhixun" value="提交" class="tj_btn"></td>
+              </tr>
+            </table>
+            <div class="plmain"> <span id="zx_content"><img src="/images/loading.gif" /></span> <span id="js_askhtml"></span> </div>
+          </div>
+        </div>
+      </DIV>
+      <!--咨询 End--> 
+      <!--评论 Start-->
+      <DIV style="DISPLAY: none" class="propl mat10 js_menuhtml">
+        <div class="plmain" id="js_commenthtml">
+          <div class="xuxian1"></div>
+          <div class="zixunbox">
+            <div class="fl pl_l"></div>
+            <div class="fl pl_m">请在这里发表您的评论</div>
+            <div class="fl pl_r"></div>
+            <div class="clear"></div>
+            <table width="100%" border="0" cellspacing="0" cellpadding="0">
+              <tr>
+                <td valign="top">用户名称：</td>
+                <td>{$username}</td>
+              </tr>
+              <tr>
+                <td valign="top">评价内容：</td>
+                <td><textarea name="comment_text" id="comment_text" fid="2" style="width:550px;height:120px;resize:none;"></textarea></td>
+              </tr>
+              <tr>
+                <td></td>
+                <td><input type="button" id="pinglun" value="提交" class="tj_btn"></td>
+              </tr>
+            </table>
+            <div class="plmain"> 
+                <span id="pj_content"><img src="/images/loading.gif" /></span> 
+                <span id="js_pjhtml"></span> 
+            </div>
+          </div>
+        </div>
+      </DIV>
+      <!--评论 End-->
+      <DIV style="DISPLAY: none" class="promain js_menuhtml"> {$fuwu}</DIV>
+    </DIV>
+  </DIV>
+</DIV>
+<script type="text/javascript"> 
+function find_comment() {
+	$("#js_menu").find("li").eq(2).click();
+	window.location.href = "#js_menu";
+}
+$(function(){
+//标签切换
+$("#js_menu").find("li").click(function(){
+	var fid=$(this).attr("fid");
+	$("#fid").val(fid);
+	var show=fid=="1"?"zx_content":"pj_content";
+	$("#showdiv").val(show);
+	$("#js_menu").find("li").removeClass("sel");
+	$(this).addClass("sel");
+	$(".js_menuhtml").hide();
+	$(".js_menuhtml").eq($("#js_menu").find("li").index($(this))).show();
+})
+
+})
+
+</script>
+<DIV class=clear></DIV>
+</form>
+{include file="{$path}footer.htm"}
+</body>
+</html>

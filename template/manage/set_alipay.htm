@@ -1,0 +1,52 @@
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>支付宝设置</title>
+<link href="css/admincss.css" rel="stylesheet"type="text/css" />
+<script type="text/javascript" src="js/jquery.js"></script>
+<script type="text/javascript" src="js/Common.js"></script>
+</head>
+
+<body>
+<div class="nav_bg1"><b>支付宝设置</b></div>
+<div class="tbbody">
+<form name="form1" method="post" action="admin.php?action=sysconfig&operation=save&type=alipay">
+  
+  <table border="0" cellspacing="1" cellpadding="3">
+    <tr>
+      <td colspan="2"><b>收款支付宝账号:</b></td>
+      </tr>
+    <tr>
+      <td class="tdleft"><input type="text" name="a0" id="a0" class="w250" value="{$a0}"></td>
+      <td>如果开启交易功能，请填写真实有效的支付宝账号，用于收取用户以现金交易的相关款项。如账号无效或安全码有误，将导致用户支付后无法正确支付，或进行正常的交易。
+</td>
+    </tr>
+    <tr>
+      <td colspan="2"><b>使用纯即时到帐接口:</b></td>
+      </tr>
+    <tr>
+      <td class="tdleft">{html_radios name="a1" options=$a1_options checked=$a1 separator=" "}</td>
+      <td>如果您的签约协议中包含纯即时到帐接口（不是标准双接口）可以选择此项，让支付只能使用即时到账方式付款</td>
+    </tr>
+    <tr>
+      <td colspan="2"><b>合作者身份 (PID):</b></td>
+      </tr>
+    <tr>
+      <td class="tdleft"><input type="text" name="a2" id="a2" class="w250" value="{$a2}"></td>
+      <td>支付宝签约用户请在此处填写支付宝分配给您的合作者身份，签约用户的手续费按照您与支付宝官方的签约协议为准。</td>
+    </tr>
+    <tr>
+      <td colspan="2"><b>交易安全校验码 (key):</b></td>
+      </tr>
+    <tr>
+      <td class="tdleft"><input type="text" name="a3" id="a3" class="w250" value="{$a3}"></td>
+      <td>支付宝签约用户可以在此处填写支付宝分配给您的交易安全校验码，此校验码您可以到支付宝官方的商家服务功能处查看</td>
+    </tr>
+  </table>
+
+
+  <input id="Submit1" type="submit" value="保存" />
+</form>
+</div>
+</body>
+</html>

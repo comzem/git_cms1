@@ -1,0 +1,46 @@
+{literal} 
+<script>
+	$(function(){
+		$("#cnum").load("/inc/ajax.php?t=cnum&tm="+(new Date).getTime());
+	})
+</script> 
+{/literal}
+<div class="pagetop">
+  <div class="quick_menu">
+    <p> 您好，<span class="cred">{$username}</span>! 欢迎来到{$webname}！
+    {if $uid>0} 
+    <a href="/my/" title="会员中心">会员中心</a> <a href="/inc/ajax.php?t=logout" title="退出" style="border:0">退出</a>  
+    {else}
+    <a href="/my/reg.php" title="注册">注册</a> <a href="/my/login.php" title="登陆">登陆</a>  
+    {/if}
+    <a href="/shop/order/cart.php" title="购物车" style="border:0">购物车 <span class="cred" id="cnum">0</span> 件</a></p>
+  </div>
+  <div class="width980">
+    <div class="header">
+      <div class="fl logo"><a href="{$domain}" title=""><img src="{$logo}" alt="" /></a></div>
+      <div class="sear fr">
+        <p>咨询热线：{$tel}</p>
+        <form method="get" action="/shop/search_product.php">
+          <div class="inputbg fl">
+            <input type="text" name="kw" value="" class="fl searinput c666" />
+          </div>
+          <input type="submit" class="fl sear_btn" onclick="this.form.submit();return false;" value=" " />
+        </form>
+      </div>
+    </div>
+    <div class="clear"></div>
+    <div class="nav">
+      <div class="nav_l fl"></div>
+      <div class="nav_m fl">
+        <ul>
+        {section name=loop loop=$topnav}
+          <li><a href="{$topnav[loop].urls}" title="{$topnav[loop].title}" target="{$topnav[loop].target}">{$topnav[loop].title}</a></li>
+          {/section}
+        </ul>
+      </div>
+      <div class="nav_r fl"></div>
+    </div>
+    <div class="clear"></div>
+  </div>
+</div>
+<div class="ad980"> <img src="/upload/1302/xa3.gif" /> </div>
