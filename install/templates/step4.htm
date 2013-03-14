@@ -1,0 +1,47 @@
+﻿<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<link href="templates/css/common.css" rel="stylesheet" type="text/css" />
+<meta http-equiv="X-UA-Compatible" content="IE=7">
+<script language="javascript" type="text/javascript" src="templates/js/jquery.js"></script>
+<title>安装向导</title>
+</head>
+<body>
+{#include file="{#$path#}header.htm"#}
+<table width="800" border="0" align="center" cellpadding="0" cellspacing="0" style="margin-top:8px;">
+  <tr>
+    <td width="186" valign="top"><table width="180" border="0" cellspacing="0" cellpadding="0"  class="left_table_right_dot">
+      <tr>
+        <td>
+{#include file="{#$path#}left.htm"#}	
+		</td>
+      </tr>
+    </table></td>
+    <td valign="top"><table width="98%" border="0" align="center" cellpadding="6" cellspacing="0">
+      <tr>
+        <td bgcolor="#F7FBFC" style=" font-size:13px; padding-left:15px; "><strong>安装完成</strong> </td>
+      </tr>
+      <tr>
+        <td style="line-height:200%;"><table width="100%" border="0" cellspacing="15" cellpadding="0">
+          <tr>
+            <td align="center"><strong style="color:#009900; font-size:14px;">{#$msg#}</strong></td>
+          </tr>
+          <tr>
+            <td align="center"><table width="250" border="0" cellspacing="15" cellpadding="0" {#$show#}>
+                <tr>
+                  <td height="30" align="center" bgcolor="#EAF5F7"><a href="../" target="_blank">网站首页</a></td>
+                  <td align="center" bgcolor="#EAF5F7"><a href="../admin.php" target="_blank">网站后台</a></td>
+                </tr>
+              </table>
+             </td>
+          </tr>
+        </table></td>
+      </tr>
+    </table>
+    </td>
+  </tr>
+</table>
+{#include file="{#$path#}foot.htm"#}
+</body>
+</html>
